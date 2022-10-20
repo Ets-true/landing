@@ -1,0 +1,197 @@
+@function adpt($var){
+    $result: 'calc(' + $var*1024/1920 + 'px + (' + $var + ' - ' + $var*1024/1920 + ') * ((100vw - 1024px) / (1920 - 1024)))';
+    @return unquote($result);
+}
+
+@function larger($var){
+    $result: 'calc(' + $var*1920/2560 + 'px + (' + $var + ' - ' + $var*1920/2560 + ') * ((100vw - 1920px) / (2560 - 1920)))';
+    @return unquote($result);
+}
+
+@mixin large {
+    @media(min-width: 1921px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media(max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin small {
+    @media(min-width: 768px) and (max-width: 1919px) {
+        @content;
+    }
+}
+
+
+@mixin property($property, $value){
+    #{$property}: unquote($value+"px");
+    @include small {
+        #{$property}: adpt($value)
+    }
+}
+
+
+
+
+@mixin size($width, $height){
+    width:unquote($width+"px");
+    height: unquote($height+"px");
+    @include small {
+        width: adpt($width);
+        height: adpt($height);
+    }
+}
+
+@mixin width($width){
+    width:unquote($width+"px");
+    @include small {
+        width: adpt($width);
+    }
+}
+
+@mixin height($height){
+    height:unquote($height+"px");
+    @include small {
+        height: adpt($height);
+    }
+}
+
+@mixin borderRadius($br){
+    border-radius:unquote($br+"px");
+    @include small {
+        border-radius: adpt($br);
+    }
+}
+
+@mixin paddingTop($paddingTop){
+    padding-top:unquote($paddingTop+"px"); 
+    @include small {
+        padding-top: adpt($paddingTop);
+    }
+}
+
+@mixin paddingLeft($paddingLeft){
+    padding-left:unquote($paddingLeft+"px"); 
+    @include small {
+        padding-left: adpt($paddingLeft);
+    }
+}
+
+@mixin paddingRight($paddingRight){
+    padding-right:unquote($paddingRight+"px"); 
+    @include small {
+        padding-right: adpt($paddingRight);
+    }
+}
+
+@mixin paddingBottom($paddingBottom){
+    padding-bottom:unquote($paddingBottom+"px"); 
+    @include small {
+        padding-bottom: adpt($paddingBottom);
+    }
+}
+
+
+@mixin marginTop($marginTop){
+    margin-top:unquote($marginTop+"px"); 
+    @include small {
+        margin-top: adpt($marginTop);
+    }
+}
+
+@mixin marginLeft($marginLeft){
+    margin-left:unquote($marginLeft+"px"); 
+    @include small {
+        margin-left: adpt($marginLeft);
+    }
+}
+
+@mixin marginRight($marginRight){
+    margin-right:unquote($marginRight+"px"); 
+    @include small {
+        margin-right: adpt($marginRight);
+    }
+}
+
+@mixin marginBottom($marginBottom){
+    margin-bottom:unquote($marginBottom+"px"); 
+    @include small {
+        margin-bottom: adpt($marginBottom);
+    }
+}
+
+@mixin fontSize($fontSize){
+    font-size:unquote($fontSize+"px"); 
+    @include small {
+        font-size: adpt($fontSize);
+    }
+}
+
+@mixin top($top){
+    top:unquote($top+"px"); 
+    @include small {
+        top: adpt($top);
+    }
+}
+@mixin left($left){
+    left:unquote($left+"px"); 
+    @include small {
+        left: adpt($left);
+    }
+}
+
+@mixin right($right){
+    right:unquote($right+"px"); 
+    @include small {
+        right: adpt($right);
+    }
+}
+
+@mixin bottom($bottom){
+    bottom:unquote($bottom+"px"); 
+    @include small {
+        bottom: adpt($bottom);
+    }
+}
+
+@mixin translateX($translate){
+    transform: translateX(unquote($translate+"px"));
+    @include small {
+       transform: translateX(adpt($translate));
+    }
+}
+
+@mixin translateY($translate){
+    transform: translateY(unquote($translate+"px"));
+    @include small {
+       transform: translateY(adpt($translate));
+    }
+}
+
+// @mixin translate3d($translateX, $translateY, $translateZ){
+//     transform: translate3d($translateX, $translateY, $translateZ);
+//     @include small {
+//        transform: translateX(adpt($translate));
+//     }
+// }
+    
+
+
+// @mixin absolute($top, $left) right bottom добавить ключи
+
+//padding
+
+// @mixin margin
+
+// @mixin border
+
+// @mixin fize
+
+// отдельно
+// @mixin quality(parametr, value)
+
+
