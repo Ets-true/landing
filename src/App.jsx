@@ -14,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <div className="content">
-        <div className="content-load"></div>
         <div className="content-main">
           <div className="main-title-block">
             <div className="main-title">Регенерация вместо покупки</div>
@@ -22,6 +21,7 @@ function App() {
           </div>
         </div>
       </div>
+      <div className="content-load"></div>
     </div>
   );
 }

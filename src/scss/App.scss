@@ -5,19 +5,21 @@ $blue: #22223B;
 
 .App {
   background-color: $white;
+  position: relative;
+  overflow-x: hidden;
+  .content-load{
+    position: absolute;
+    top: 0; left: 0;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    width: 100vw;
+    height: 100vh;
+    background-color: $blue;
+  }
   .content{
-    width:100vw;
+    width: 100vw;
+    max-width: 1920px;
+    margin: auto;
     min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    .content-load{
-      position: absolute;
-      top: 0; left: 0;
-      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-      width: 100vw;
-      height: 100vh;
-      background-color: $blue;
-    }
     .content-main{
       @include paddingTop(260);
       @include paddingLeft(248);
