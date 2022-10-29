@@ -1,48 +1,252 @@
 @import "./assets/mixin.scss";
 
 $white: #FEFFFA;
-$blue: #22223B;
+$purple-blue: #22223B;
+$grey-blue: #777282;
 
 .App {
   background-color: $white;
   position: relative;
-  overflow-x: hidden;
-  .content-load{
+  font-family: 'Gothic';
+  .loader{
+    z-index: 100;
     position: absolute;
     top: 0; left: 0;
-    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    background-color: rgba(255, 255, 255, 0);
+    overflow-x: hidden;
     width: 100vw;
     height: 100vh;
-    background-color: $blue;
+    max-width:100%;
+    .loader-panel{
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+      width: 100%; height: 100%;
+      background-color: $purple-blue;
+    }
   }
-  .content{
+  .block-Regeneration{
     width: 100vw;
-    max-width: 1920px;
-    margin: auto;
-    min-height: 100vh;
-    .content-main{
-      @include paddingTop(260);
-      @include paddingLeft(248);
-      .main-title-block{
-        font-family: 'Gothic';
-        .main-title{
-          @include fontSize(54);
+    height: 87vh;
+    max-width:100%;
+    background-color: $white;
+    position: relative;
+    padding-bottom: 13vh;
+    .logo{
+      position: absolute;
+      @include top(40);
+      @include left(55);
+      @include size(219,74);
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+    .title-block{
+      position: sticky;
+      @include top(266);
+      @include paddingLeft(346);
+      .title{
+        @include fontSize(54);
+        color: black;
+      }
+      .subtitle{
+        @include width(363);
+        @include marginTop(5);
+        @include fontSize(22);
+        @include property(line-height,27);
+        color: $grey-blue;
+        position: relative;
+        &::before{
+          content: '';
+          position: absolute;
+          @include bottom(26);
+          @include left(363+50);
+          @include width(751);
+          height: 1px;
+          background-color: #3A3A48;
         }
-        .main-subtitle{
-          @include marginTop(5);
+      }
+    }
+    .wave-block{
+      position: absolute;
+      left: 0; bottom: -3px;
+      width: 100vw;
+      max-width:100%;
+      svg{
+        width: 100%
+      }
+    }
+  }
+  .background-blue{
+      width: 100vw;
+      max-width:100%;
+      height: 100vh;
+      background-color: $purple-blue;
+  }
+
+  .block-About{
+    width: 100vw;
+    max-width:100%;
+    height: 130vh;
+    background-color: $white;
+    position: relative;
+    @include paddingBottom(150);
+    .about-wrap{
+      position: sticky;
+      @include top(219);
+      .about-info{
+        @include marginTop(219);
+        @include marginLeft(422);
+        display: flex;
+        .about-title{
+          @include fontSize(40);
+          span{
+            color: #675D7D
+          }
+        }
+        .about-text{
+          @include marginLeft(108);
+          @include fontSize(22);
+          @include width(537);
+        }
+      }
+      .about-tezis-group{
+        .line{
+          @include marginTop(95);
+          @include marginBottom(39);
+          @include marginLeft(750);
+          position: relative;
+          .line-left{
+            transition: all 0.3s;
+            @include width(286);
+            height: 1px;
+            background-color: #707070;
+            position: absolute;
+            top: 50%;
+            @include left(-42);
+          }
+          .line-text{
+            @include fontSize(18);
+          }
+          .line-right{
+            transition: width 0.3s;
+            width: 0;
+            height: 1px;
+            background-color: #707070;
+            position: absolute;
+            top: 50%;
+            @include left(42+211);
+          }
+        };
+        .tezis{
+          display: flex;
+          @include height(50);
+          align-items: center;
+          @include marginBottom(90);
+          @include marginLeft(430);
+          .tezis-name{
+            @include width(300);
+            text-align: center;
+            @include marginRight(127);
+            @include fontSize(30);
+          }
+          .tezis-points{
+            @include size(40,10);
+            position: relative;
+            &::before{
+              content: '';
+              position: absolute;
+              top: 0; left: 0;
+              @include size(10,10);
+              background-color: #F7931E;
+              @include borderRadius(5);
+            };
+            &::after{
+              content: '';
+              position: absolute;
+              top: 0; right: 0;
+              @include size(10,10);
+              background-color: #F7931E;
+              @include borderRadius(5);
+            }
+          }
+          .tezis-text{
+            @include width(600);
+            @include marginLeft(122);
+            @include fontSize(20);
+          }
+        }
+      }
+    }
+    
+  }
+
+  .block-More{
+    width: 100vw;
+    height: 130vh;
+    max-width: 100%;
+    background-color: $white;
+    position: relative;
+    .more-wrap{
+      position: sticky;
+      @include top(154);
+      .more-info{
+        display: flex;
+        align-items: center;
+        @include marginLeft(530);
+        @include marginTop(154);
+        .more-title{
+          @include fontSize(40);
+        }
+        .more-text{
+          @include marginLeft(155);
           @include fontSize(22);
         }
       }
     }
   }
+  .next-block{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 166, 0, 0.315);
+    max-width: 100%;
+  }
+}
+
+.title-animation{
+  position: relative;
+  z-index: 50;
+  overflow: hidden;
+  .title-animation-block{
+    transition: transform 0.65s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $white;
+    opacity: 0.6;
+  }
+}
+
+.text-animation{
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+  .text-animation-block{
+    transition: transform 0.65s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $white;
+  }
+}
+
+.opacity-animation-block{
+  transition: opacity 0.65s;
+  opacity: 0;
 }
 
 
-@keyframes load {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100vw);
-  }
-}
+  

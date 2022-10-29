@@ -46,3 +46,29 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+  // background-color: black;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 20%;
+  border-radius: 10px;
+  // background-color: #f27500b2;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  border: 5px solid white;
+  
+}
+
+
+::-webkit-scrollbar * {
+  background:transparent;
+}
+::-webkit-scrollbar-thumb {
+  background:#999 !important;
+}
