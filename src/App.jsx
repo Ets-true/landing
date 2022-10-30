@@ -26,6 +26,8 @@ function App() {
 
 
     let clientHeight = document.documentElement.clientHeight
+    let flipTrigger = false
+    let scrollCount = 0
 
     window.addEventListener('scroll', function (e) {
       // let windowTop = $(window).scrollTop() + document.documentElement.clientHeight + 500
@@ -57,6 +59,7 @@ function App() {
         }
       })
 
+
       if(flipAnimation[0].getBoundingClientRect().top <= clientHeight * 0.9){
         flipAnimation[0].children[0].style.opacity = 1
         flipAnimation[0].children[0].style.transform = 'translateY(0)'
@@ -64,8 +67,34 @@ function App() {
           flipAnimation[0].children[1].style.opacity = 1
           flipAnimation[0].children[1].style.transform = 'translateY(0)'
         }, 100);
-
-        //запуск второй анимации
+        if(flipTrigger == false){
+          scrollCount = $(window).scrollTop()
+          console.log(scrollCount)
+        }
+        flipTrigger = true
+        if($(window).scrollTop() - scrollCount >= 1000){
+          flipAnimation[0].children[0].style.opacity = 0
+          flipAnimation[0].children[0].style.transform = 'translateY(-116px)'
+          flipAnimation[1].children[0].style.opacity = 1
+          flipAnimation[1].children[0].style.transform = 'translateY(-116px)'
+          setTimeout(() => {
+            flipAnimation[0].children[1].style.opacity = 0
+            flipAnimation[0].children[1].style.transform = 'translateY(-116px)'
+            flipAnimation[1].children[1].style.opacity = 1
+            flipAnimation[1].children[1].style.transform = 'translateY(-116px)'
+          }, 100);
+        } else {
+          flipAnimation[0].children[0].style.opacity = 1
+          flipAnimation[0].children[0].style.transform = 'translateY(0)'
+          flipAnimation[1].children[0].style.opacity = 0
+          flipAnimation[1].children[0].style.transform = 'translateY(0)'
+          setTimeout(() => {
+            flipAnimation[0].children[1].style.opacity = 1
+            flipAnimation[0].children[1].style.transform = 'translateY(0)'
+            flipAnimation[1].children[1].style.opacity = 0
+            flipAnimation[1].children[1].style.transform = 'translateY(0)'
+          })
+        }
       } else {
         flipAnimation[0].children[1].style.opacity = 0
         flipAnimation[0].children[1].style.transform = 'translateY(116px)' //Прикрутить адаптив
@@ -73,6 +102,7 @@ function App() {
           flipAnimation[0].children[0].style.opacity = 0
           flipAnimation[0].children[0].style.transform = 'translateY(116px)' //Прикрутить адаптив
         }, 100);
+        flipTrigger = false
       }
 
 

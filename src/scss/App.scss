@@ -229,8 +229,18 @@ $grey-blue: #777282;
               }
             }
             &:nth-child(2){
-              opacity: 0;
-              background-color: yellow;
+              .advantage-example{
+                &:nth-child(1){
+                  transition: all 0.3s;
+                  transform: translateY(0); 
+                  opacity: 0;
+                }
+                &:nth-child(2){
+                  transition: all 0.3s;
+                  transform: translateY(0);
+                  opacity: 0;
+                }
+              }
             }
             display: flex;
             @include marginBottom(30);
