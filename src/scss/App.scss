@@ -186,6 +186,7 @@ $grey-blue: #777282;
     max-width: 100%;
     background-color: $white;
     position: relative;
+    @include paddingBottom(121);
     .more-wrap{
       position: sticky;
       @include top(154);
@@ -262,6 +263,156 @@ $grey-blue: #777282;
       }
     }
   }
+
+  .block-Work{
+    width: 100vw;
+    height: 330vh;
+    max-width: 100%;
+    background-color: $white;
+    position: relative;
+    @include paddingBottom(54);
+    .work-wrap{
+      position: sticky;
+      @include top(90);
+      .work-title{
+        @include marginLeft(1131);
+        @include marginTop(90);
+        @include fontSize(40);
+      }
+      .work-info{
+        display: flex;
+        align-items: center;
+        @include marginTop(70);
+        .work-kamaz{
+          @include size(814,546);
+          position: relative;
+          z-index: 0;
+          overflow: hidden;
+          .kamaz-mask{
+            transition: all 0.5s;
+            position: absolute;
+            @include top(0);
+            @include left(-172);
+            @include size(1002,549);
+            svg{
+              width: 100%
+            }
+          }
+        }
+        .work-points{
+          @include size(789,648);
+          background-color: grey;
+          @include marginLeft(146);
+          z-index: 100;
+        }
+      }
+    }
+    
+  }
+
+  .block-Partners{
+    width: 100vw;
+    height: 150vh;
+    max-width: 100%;
+    background-color: $white;
+    position: relative;
+    @include paddingBottom(178);
+    .Partners-wrap{
+      position: sticky;
+      @include top(133);
+      .partners-title{
+        @include fontSize(40);
+        @include marginTop(333);
+        text-align: center;
+      }
+      .partners-row{
+        display: flex;
+        @include marginTop(167);
+        .partner{
+          text-align: center;
+          @include width(290);
+          @include marginLeft(160);
+          .partner-img{
+            @include height(90);
+            img{
+              width: auto;
+              height: 100%;
+            }
+          }
+          .partner-name{
+            @include marginTop(40);
+            @include fontSize(20);
+          }
+        }
+      }
+    }
+
+  }
+
+  
+
+  .block-QA{
+    width: 100vw;
+    height: 330vh;
+    max-width: 100%;
+    background-color: $white;
+    position: relative;
+    @include paddingBottom(54);
+    @include marginTop(110);
+    .QA-wrap{
+      .QA-title{
+        @include marginLeft(205);
+        @include fontSize(40);
+      }
+      .QA{
+        transition: box-shadow 0.3s;
+        border: 1px solid rgb(240, 210, 154);
+        box-shadow: none;
+        &:hover{
+          box-shadow: 0px 0px 24px #00000029;
+          border: 0px;
+        }
+        @include width(1711);
+        @include property(min-height,754);
+        background-color: $white;
+        margin: auto;
+        @include marginTop(70);
+        @include borderRadius(40);
+        display: flex;
+        .QA-questions{
+          @include paddingTop(57);
+          @include paddingLeft(100);
+          @include width(535);
+          .QA-question{
+            display: flex;
+            @include marginBottom(56);
+            @include fontSize(20);
+            cursor: pointer;
+            .QA-question-number{
+
+            }
+            .QA-question-title{
+              @include marginLeft(15);
+              @include width(380);
+            }
+          }
+        }
+        .QA-answer-panel{
+          @include paddingLeft(139);
+          .question{
+            @include marginTop(222);
+            @include fontSize(22);
+          }
+          .answer{
+            @include marginTop(74);
+            @include width(742);
+            @include fontSize(20);
+          }
+        }
+      }
+    }
+  }
+
   .next-block{
     width: 100vw;
     height: 100vh;
