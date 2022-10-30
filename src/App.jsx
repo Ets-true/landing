@@ -22,12 +22,25 @@ function App() {
     let opacityAnimation = document.querySelectorAll('.opacity-animation-block')
     let lineLeft = document.querySelector('.line-left')
     let lineRight = document.querySelector('.line-right')
-    let flipAnimation = document.querySelectorAll('.flip-animation-block')
+    let flipAnimationBlock = document.querySelectorAll('.flip-animation-block')
+
+    let flipAnimationLineOne = flipAnimationBlock[0]
+    let flipAnimationLineTwo = flipAnimationBlock[1]
+
+    let OneOne = flipAnimationLineOne.children[0]
+    let OneTwo = flipAnimationLineOne.children[1]
+
+    let TwoOne = flipAnimationLineTwo.children[0]
+    let TwoTwo = flipAnimationLineTwo.children[1]
+
 
 
     let clientHeight = document.documentElement.clientHeight
     let flipTrigger = false
     let scrollCount = 0
+
+    let firstFLip = false
+    let secondFLip = false;
 
     window.addEventListener('scroll', function (e) {
       // let windowTop = $(window).scrollTop() + document.documentElement.clientHeight + 500
@@ -60,53 +73,50 @@ function App() {
       })
 
 
-      if(flipAnimation[0].getBoundingClientRect().top <= clientHeight * 0.9){
-        flipAnimation[0].children[0].style.opacity = 1
-        flipAnimation[0].children[0].style.transform = 'translateY(0)'
-        setTimeout(() => {
-          flipAnimation[0].children[1].style.opacity = 1
-          flipAnimation[0].children[1].style.transform = 'translateY(0)'
-        }, 100);
-        if(flipTrigger == false){
-          scrollCount = $(window).scrollTop()
-          console.log(scrollCount)
-        }
-        flipTrigger = true
-        if($(window).scrollTop() - scrollCount >= 1000){
-          flipAnimation[0].children[0].style.opacity = 0
-          flipAnimation[0].children[0].style.transform = 'translateY(-116px)'
-          flipAnimation[1].children[0].style.opacity = 1
-          flipAnimation[1].children[0].style.transform = 'translateY(-116px)'
+      if(flipAnimationLineOne.getBoundingClientRect().top <= clientHeight * 0.9){
+
+        if(firstFLip === false){
+          OneOne.style.opacity = 1;  OneOne.style.transform = 'translateY(0)'
           setTimeout(() => {
-            flipAnimation[0].children[1].style.opacity = 0
-            flipAnimation[0].children[1].style.transform = 'translateY(-116px)'
-            flipAnimation[1].children[1].style.opacity = 1
-            flipAnimation[1].children[1].style.transform = 'translateY(-116px)'
+            OneTwo.style.opacity = 1; OneTwo.style.transform = 'translateY(0)'
           }, 100);
+          scrollCount = $(window).scrollTop()
+          firstFLip = true
+          console.log('firstFlipOn')
+        }
+
+        if($(window).scrollTop() - scrollCount >= 1000){ //Прикрутить адаптив
+          if(secondFLip === false){
+            OneOne.style.opacity = 0; OneOne.style.transform = 'translateY(-116px)'; //Прикрутить адаптив
+            TwoOne.style.opacity = 1; TwoOne.style.transform = 'translateY(-116px)';  //Прикрутить адаптив
+            setTimeout(() => {
+              OneTwo.style.opacity = 0; OneTwo.style.transform = 'translateY(-116px)'; //Прикрутить адаптив
+              TwoTwo.style.opacity = 1; TwoTwo.style.transform = 'translateY(-116px)'; //Прикрутить адаптив
+            }, 100);
+            secondFLip = true
+          }
         } else {
-          flipAnimation[0].children[0].style.opacity = 1
-          flipAnimation[0].children[0].style.transform = 'translateY(0)'
-          flipAnimation[1].children[0].style.opacity = 0
-          flipAnimation[1].children[0].style.transform = 'translateY(0)'
-          setTimeout(() => {
-            flipAnimation[0].children[1].style.opacity = 1
-            flipAnimation[0].children[1].style.transform = 'translateY(0)'
-            flipAnimation[1].children[1].style.opacity = 0
-            flipAnimation[1].children[1].style.transform = 'translateY(0)'
-          })
+          if(secondFLip === true){
+            TwoOne.style.opacity = 0; TwoOne.style.transform = 'translateY(0)';
+            OneOne.style.opacity = 1; OneOne.style.transform = 'translateY(0)';
+            setTimeout(() => {
+              TwoTwo.style.opacity = 0; TwoTwo.style.transform = 'translateY(0)';
+              OneTwo.style.opacity = 1; OneTwo.style.transform = 'translateY(0)';
+            })
+            secondFLip = false
+          }
         }
       } else {
-        flipAnimation[0].children[1].style.opacity = 0
-        flipAnimation[0].children[1].style.transform = 'translateY(116px)' //Прикрутить адаптив
-        setTimeout(() => {
-          flipAnimation[0].children[0].style.opacity = 0
-          flipAnimation[0].children[0].style.transform = 'translateY(116px)' //Прикрутить адаптив
-        }, 100);
-        flipTrigger = false
+        if(firstFLip === true){
+          OneOne.style.opacity = 0; OneOne.style.transform = 'translateY(116px)' //Прикрутить адаптив
+          setTimeout(() => {
+            OneTwo.style.opacity = 0; OneTwo.style.transform = 'translateY(116px)' //Прикрутить адаптив
+          }, 100);
+          firstFLip = false
+          console.log('firstFlipOut')
+        }
       }
 
-
-      
     })
   }, [])
 
