@@ -182,7 +182,7 @@ $grey-blue: #777282;
 
   .block-More{
     width: 100vw;
-    height: 130vh;
+    height: 230vh;
     max-width: 100%;
     background-color: $white;
     position: relative;
@@ -200,6 +200,54 @@ $grey-blue: #777282;
         .more-text{
           @include marginLeft(155);
           @include fontSize(22);
+        }
+      }
+      .more-content{
+        @include marginTop(112);
+        @include marginLeft(361);
+        display: flex;
+        align-items: center;
+        .more-lottie{
+          @include size(338,484);
+          background-color: grey;
+        }
+        .more-advantage-group{
+          @include marginLeft(116);
+          .advantage-line{
+            &:nth-child(1){
+              .advantage-example{
+                &:nth-child(1){
+                  transition: all 0.3s;
+                  transform: translateY(116px); //Прикрутить адапатив
+                  opacity: 0;
+                }
+                &:nth-child(2){
+                  transition: all 0.3s;
+                  transform: translateY(116px); //Прикрутить адапатив
+                  opacity: 0;
+                }
+              }
+            }
+            &:nth-child(2){
+              opacity: 0;
+              background-color: yellow;
+            }
+            display: flex;
+            @include marginBottom(30);
+            // opacity: 0;
+            .advantage-example{
+              @include width(432);
+              @include marginLeft(101);
+              .advantage-title{
+                @include fontSize(25);
+              }
+              .advantage-text{
+                @include width(355);
+                @include marginTop(15);
+                @include fontSize(20);
+              }
+            }
+          }
         }
       }
     }

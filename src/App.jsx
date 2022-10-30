@@ -22,6 +22,8 @@ function App() {
     let opacityAnimation = document.querySelectorAll('.opacity-animation-block')
     let lineLeft = document.querySelector('.line-left')
     let lineRight = document.querySelector('.line-right')
+    let flipAnimation = document.querySelectorAll('.flip-animation-block')
+
 
     let clientHeight = document.documentElement.clientHeight
 
@@ -54,6 +56,27 @@ function App() {
           lineLeft.style.width = '0'
         }
       })
+
+      if(flipAnimation[0].getBoundingClientRect().top <= clientHeight * 0.9){
+        flipAnimation[0].children[0].style.opacity = 1
+        flipAnimation[0].children[0].style.transform = 'translateY(0)'
+        setTimeout(() => {
+          flipAnimation[0].children[1].style.opacity = 1
+          flipAnimation[0].children[1].style.transform = 'translateY(0)'
+        }, 100);
+
+        //запуск второй анимации
+      } else {
+        flipAnimation[0].children[1].style.opacity = 0
+        flipAnimation[0].children[1].style.transform = 'translateY(116px)' //Прикрутить адаптив
+        setTimeout(() => {
+          flipAnimation[0].children[0].style.opacity = 0
+          flipAnimation[0].children[0].style.transform = 'translateY(116px)' //Прикрутить адаптив
+        }, 100);
+      }
+
+
+      
     })
   }, [])
 
@@ -110,13 +133,39 @@ function App() {
             <div className="more-info">
               <div className="more-title title-animation">
                 <div className="title-animation-block"></div>
-                Кроме того
+                {Content.aboutMore.title}
               </div>
               <div className="more-text text-animation">
                 <div className="text-animation-block"></div>
-                данный метод выделяется следующим
+                {Content.aboutMore.text}
               </div>
-              </div>
+            </div>
+            <div className="more-content">
+               <div className="more-lottie"></div>
+               <div className="more-advantage-group">
+               {Content.aboutMore.advantageGroup.map(advatnageLine => {
+                return (
+                  <div className="advantage-line flip-animation-block">
+                    {advatnageLine.map(advantage=>{
+                      return(
+                        <div className="advantage-example">
+                          <div className="advantage-title">{advantage.title}</div>
+                          <div className="advantage-text">{advantage.text}</div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )
+               })}
+                  {/* <div className="advantage-line">
+                      <div className="advantage-example">
+                        <div className="advantage-title"></div>
+                        <div className="advantage-text"></div>
+                      </div>
+                  </div> */}
+               </div>
+            </div>
+           
           </div>
       </div>
 
