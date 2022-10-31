@@ -124,6 +124,12 @@ function App() {
       }
 
     })
+    let control = document.querySelector(".control");
+    // control.value;
+
+    control.oninput = function() {
+      console.log(this.value)
+    }
   }, [])
 
   const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
@@ -131,6 +137,7 @@ function App() {
   const showAnswer = (index) => {
     setAnswer([`.0${index+1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
+
 
   return (
     <div className="App">
@@ -266,6 +273,12 @@ function App() {
             </div>
            <div className="QA">
             <div className="QA-questions">
+              <div class="control-wrap">
+                <div className="control-body">
+                  <div className="line"></div>
+                   <input type="range" min={1} max={1000} defaultValue="25" className="control"/>
+                </div>
+              </div>
               {Content.QA.questions.map((question, index)=>{
                 return(
                   <div className="QA-question" onClick={()=>{showAnswer(index)}}>

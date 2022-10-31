@@ -366,8 +366,9 @@ $grey-blue: #777282;
       }
       .QA{
         transition: box-shadow 0.3s;
-        border: 1px solid rgb(240, 210, 154);
-        box-shadow: none;
+        // border: 1px solid rgb(240, 210, 154);
+        box-shadow: 0px 0px 24px #00000029;
+        // box-shadow: none;
         &:hover{
           box-shadow: 0px 0px 24px #00000029;
           border: 0px;
@@ -383,6 +384,49 @@ $grey-blue: #777282;
           @include paddingTop(57);
           @include paddingLeft(100);
           @include width(535);
+          position: relative;
+          .control-wrap{
+            position: absolute;
+            @include top(350); 
+            @include right(-320);
+            .control-body{
+              position: relative;
+              .line{
+                position: absolute;
+                @include top(-315);
+                @include right(324);
+                @include size(1,646);
+                background-color: #707070;
+                z-index: 0;
+              }
+              .control{
+                -webkit-appearance: none;
+                @include width(646);
+                transform: rotate(90deg);
+                outline: none;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+                z-index: 1;
+                // background-color: #70707000;
+                background-color: #707070ad;
+
+                &::-webkit-slider-thumb {
+                  -webkit-appearance: none;
+                  appearance: none;
+                  @include size(13,13);
+                  border-radius: 50%;
+                  background: #F7931E;
+                  cursor: pointer;
+                }
+                &::-moz-range-thumb {
+                  @include size(13,13);
+                  border-radius: 50%;
+                  background: #F7931E;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
           .QA-question{
             display: flex;
             @include marginBottom(56);
