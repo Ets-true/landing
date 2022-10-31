@@ -124,11 +124,28 @@ function App() {
       }
 
     })
-    let control = document.querySelector(".control");
-    // control.value;
 
+
+    let questions = document.querySelectorAll(".QA-question");
+    
+    let pointPositions = []
+    let startPosition = 53
+    let endPosition = questions[6].offsetTop + questions[6].offsetHeight
+
+    questions.forEach(question => {
+      let position = Math.floor((question.offsetTop + question.offsetHeight/2 - startPosition) / endPosition * 1000)
+      console.log(position)
+      pointPositions.push(position)
+    })
+    console.log(pointPositions)
+
+    const getNumber = (arr, searchNum) => 
+      arr.find(it => Math.abs(it - searchNum) === Math.min(...arr.map(it => Math.abs(it - searchNum))));
+
+    let control = document.querySelector(".control");
+    
     control.oninput = function() {
-      console.log(this.value)
+      console.log(getNumber(pointPositions, this.value))
     }
   }, [])
 
