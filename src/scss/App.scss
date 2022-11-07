@@ -6,8 +6,13 @@ $grey-blue: #777282;
 
 .App {
   background-color: $white;
-  position: relative;
   font-family: 'Gothic';
+  background-color: #191931;
+  .App-body{
+    // transform: scale(0.95);
+    z-index: 100;
+    position: relative;
+    transition: all 0.3s;
   .loader{
     z-index: 100;
     position: absolute;
@@ -264,6 +269,7 @@ $grey-blue: #777282;
     }
   }
 
+  
   .block-Work{
     width: 100vw;
     height: 330vh;
@@ -301,18 +307,62 @@ $grey-blue: #777282;
         }
         .work-points{
           @include size(789,648);
-          background-color: grey;
+          // background-color: grey;
           @include marginLeft(146);
           z-index: 100;
+          .point-example{
+            @include size(788,129);
+            position: relative;
+            // background-color: green;
+            @include marginBottom(115);
+            .point-num{
+              position: absolute;
+              top: -20px; left: 0;
+              @include fontSize(170);
+              opacity: 0.03;
+            }
+            .point-name{
+              position: absolute;
+              bottom: 0;
+              @include left(195);
+              @include fontSize(22);
+            }
+          }
         }
       }
     }
     
   }
 
+  .block-Form{
+    width: 100%;
+    @include paddingTop(65);
+    @include paddingBottom(70);
+    box-shadow: 0px 0px 12px #00000029;
+    @include marginTop(210);
+    text-align: center;
+    .Form-title{
+      margin: auto;
+      @include fontSize(25);
+    }
+    .Form-button{
+      cursor: pointer;
+      margin: auto;
+      @include marginTop(55);
+      @include width(305);
+      @include paddingTop(14);
+      @include paddingBottom(14);
+      background-color: #002266;
+      @include borderRadius(15);
+      @include fontSize(22);
+      color: white;
+    }
+    .Form-body{}
+  }
+
   .block-Partners{
     width: 100vw;
-    height: 150vh;
+    height: 100vh;
     max-width: 100%;
     background-color: $white;
     position: relative;
@@ -349,16 +399,16 @@ $grey-blue: #777282;
 
   }
 
-  
-
   .block-QA{
     width: 100vw;
-    height: 330vh;
+    height: 150vh;
     max-width: 100%;
     background-color: $white;
     position: relative;
     @include paddingBottom(54);
     @include marginTop(110);
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
     .QA-wrap{
       .QA-title{
         @include marginLeft(205);
@@ -463,6 +513,49 @@ $grey-blue: #777282;
     background-color: rgba(255, 166, 0, 0.315);
     max-width: 100%;
   }
+  }
+
+.block-Footer{
+  color: white;
+  @include paddingLeft(262);
+  @include paddingRight(232);
+  transform: translateY(-200px);
+  z-index: 50;
+  .Footer-row{
+    display: flex;
+    .Footer-form{
+      .form-title{
+        @include fontSize(25);
+      }
+      .form-button{
+        user-select: none;
+        cursor: pointer;
+        @include marginTop(25);
+        @include width(297);
+        @include paddingTop(14);
+        @include paddingBottom(14);
+        background-color: #FEFFFA;
+        color: black;
+        @include borderRadius(15);
+        text-align: center;
+        @include fontSize(22);
+      }
+      .RM{
+        @include marginTop(135);
+        @include width(297);
+        @include fontSize(18);
+        text-align: center;
+      }
+      .copyright{
+        @include fontSize(18);
+        @include width(297);
+        @include marginTop(10);
+        text-align: center;
+      }
+    }
+    .Footer-info{}
+  }
+}
 }
 
 .title-animation{
