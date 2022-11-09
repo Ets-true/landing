@@ -13,6 +13,9 @@ $grey-blue: #777282;
     z-index: 100;
     position: relative;
     transition: all 0.3s;
+    // background-color: $white;
+    background-color: $white;
+    @include borderRadius(60);
   .loader{
     z-index: 100;
     position: absolute;
@@ -307,10 +310,12 @@ $grey-blue: #777282;
         }
         .work-points{
           @include size(789,648);
+          overflow: hidden;
           // background-color: grey;
           @include marginLeft(146);
           z-index: 100;
           .point-example{
+            transition: all 0.5s;
             @include size(788,129);
             position: relative;
             // background-color: green;
@@ -362,14 +367,14 @@ $grey-blue: #777282;
 
   .block-Partners{
     width: 100vw;
-    height: 100vh;
+    height: 60vh;
     max-width: 100%;
     background-color: $white;
     position: relative;
     @include paddingBottom(178);
     .Partners-wrap{
-      position: sticky;
-      @include top(133);
+      // position: sticky;
+      // @include top(133);
       .partners-title{
         @include fontSize(40);
         @include marginTop(333);
@@ -445,7 +450,8 @@ $grey-blue: #777282;
                 position: absolute;
                 @include top(-315);
                 @include right(324);
-                @include size(1,646);
+                width: 1px;
+                @include height(646);
                 background-color: #707070;
                 z-index: 0;
               }
@@ -457,8 +463,8 @@ $grey-blue: #777282;
                 -webkit-transition: .2s;
                 transition: opacity .2s;
                 z-index: 1;
-                // background-color: #70707000;
-                background-color: #707070ad;
+                background-color: #70707000;
+                // background-color: #707070ad;
 
                 &::-webkit-slider-thumb {
                   -webkit-appearance: none;

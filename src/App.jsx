@@ -49,6 +49,17 @@ function App() {
     let res
     let footerTrigger = false
 
+    let blockWork =  document.querySelector('.block-Work')
+    let points =  document.querySelector('.work-points').children
+    points[3].style.opacity = 0
+    points[4].style.opacity = 0
+    let pointsTrigger = false
+    let pointsScrollTop
+    let firstPointStep = false
+    let secondPointStep = false
+
+    // points[1].style.transform = 'translateY(-244px)'
+
     window.addEventListener('scroll', function (e) {
       // let windowTop = $(window).scrollTop() + document.documentElement.clientHeight + 500
 
@@ -127,10 +138,40 @@ function App() {
       } else {
         kamazAnimationBlock.style.transform = 'translateX(0)'
       }
+      // console.log($(window).scrollTop())
+
+      if(blockWork.getBoundingClientRect().top <= 0){
+        if(pointsTrigger === false){
+          pointsScrollTop = $(window).scrollTop()
+          pointsTrigger = true
+        }
+        if($(window).scrollTop()-pointsScrollTop >= 300 && firstPointStep === false){
+          for (let point of points) {point.style.transform = 'translateY(-244px)'} 
+          points[0].style.opacity = 0
+          points[3].style.opacity = 1
+          firstPointStep = true
+        } else if ($(window).scrollTop()-pointsScrollTop < 300 && firstPointStep === true){
+          for (let point of points) {point.style.transform = 'translateY(0)'} 
+          points[0].style.opacity = 1
+          points[3].style.opacity = 0
+          firstPointStep = false
+        }
+        if($(window).scrollTop()-pointsScrollTop >= 900 && secondPointStep === false){
+          for (let point of points) {point.style.transform = 'translateY(-488px)'}
+          points[1].style.opacity = 0
+          points[4].style.opacity = 1
+          secondPointStep = true
+        }else if ($(window).scrollTop()-pointsScrollTop < 900 && secondPointStep === true){
+          for (let point of points) {point.style.transform = 'translateY(-244px)'}
+          points[1].style.opacity = 1
+          points[4].style.opacity = 0
+          secondPointStep = false
+        }
+      }
+
 
       // if ((Footer.getBoundingClientRect().top <= clientHeight)) {
         res =  (Footer.getBoundingClientRect().top / clientHeight) * 1.97
-        console.log(res)
         if (res <= 1 && footerTrigger == false){
           footerTrigger = true
           res = 0.95
@@ -153,10 +194,10 @@ function App() {
 
     questions.forEach(question => {
       let position = Math.floor((question.offsetTop + question.offsetHeight / 2 - startPosition) / endPosition * 1000)
-      console.log(position)
+      // console.log(position)
       pointPositions.push(position)
     })
-    console.log(pointPositions)
+    // console.log(pointPositions)
 
     const getNumber = (arr, searchNum) =>
       arr.find(it => Math.abs(it - searchNum) === Math.min(...arr.map(it => Math.abs(it - searchNum))));
@@ -164,8 +205,10 @@ function App() {
     let control = document.querySelector(".control");
 
     control.oninput = function () {
-      console.log(getNumber(pointPositions, this.value))
+      // console.log(getNumber(pointPositions, this.value))
     }
+
+
   }, [])
 
   const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
@@ -173,6 +216,7 @@ function App() {
   const showAnswer = (index) => {
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
+
 
 
 
@@ -271,7 +315,7 @@ function App() {
               <div className="work-points">
                 {Content.aboutWork.pointNames.map((pointName, index) => {
                   return (
-                    <div className="point-example">
+                    <div className="point-example" key={`point-${index}`}>
                       <div className="point-num">.0{index + 1}</div>
                       <div className="point-name">{pointName}</div>
                     </div>
@@ -336,8 +380,14 @@ function App() {
                 })}
               </div>
               <div className="QA-answer-panel">
-                <div className="question">{answer[0]}</div>
-                <div className="answer">{answer[1]}</div>
+                <div className="question text-animation">
+                  <div className="text-animation-block"></div>
+                  {answer[0]}
+                </div>
+                <div className="answer text-animation">
+                  <div className="text-animation-block"></div>
+                  {answer[1]}
+                </div>
               </div>
             </div>
           </div>
