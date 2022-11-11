@@ -446,6 +446,9 @@ $grey-blue: #777282;
             @include right(-320);
             .control-body{
               position: relative;
+              .next-point{
+                position: absolute;
+              }
               .line{
                 position: absolute;
                 @include top(-315);
@@ -490,8 +493,13 @@ $grey-blue: #777282;
             @include marginBottom(56);
             @include fontSize(20);
             cursor: pointer;
+            &:hover{
+              .QA-question-number{
+                color: orange 
+              }
+            }
             .QA-question-number{
-
+              transition: all 0.3s
             }
             .QA-question-title{
               @include marginLeft(15);

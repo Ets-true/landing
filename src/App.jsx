@@ -209,18 +209,19 @@ function App() {
     let control = document.querySelector(".control");
     let ind, num
 
+    
+
     control.oninput = function () {
       num = getNumber(pointPositions, this.value)
       ind = pointPositions.indexOf(num)
-      showAnswer(ind)
+      setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
     }
 
     control.onchange = function () {
       num = getNumber(pointPositions, this.value)
       control.value = num
       ind = pointPositions.indexOf(num)
-      console.log(ind)
-      showAnswer(ind)
+      setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
       // console.log(getNumber(pointPositions, this.value))
     }
 
@@ -230,6 +231,7 @@ function App() {
   const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
 
   const showAnswer = (index) => {
+    // control.value = pointPositions[index]
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
 
