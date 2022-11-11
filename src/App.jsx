@@ -9,6 +9,11 @@ import $ from 'jquery'
 
 function App() {
 
+  const calc = (val)=>{
+    return val*1024/1920 + (val - val*1024/1920 ) * ((document.documentElement.clientWidth - 1024) / (1920 - 1024))
+  }
+
+
   useEffect(() => {
     let loader = document.querySelector('.loader')
     let loaderPanel = document.querySelector('.loader-panel')
@@ -16,6 +21,7 @@ function App() {
     setTimeout(() => {
       loader.style.display = 'none'
     }, 500);
+
 
 
     let titleAnimation = document.querySelectorAll('.title-animation-block')
@@ -58,7 +64,6 @@ function App() {
     let firstPointStep = false
     let secondPointStep = false
 
-    // points[1].style.transform = 'translateY(-244px)'
 
     window.addEventListener('scroll', function (e) {
       // let windowTop = $(window).scrollTop() + document.documentElement.clientHeight + 500
@@ -85,7 +90,7 @@ function App() {
           item.style.opacity = '0'
           lineRight.style.width = '0'
 
-          lineLeft.style.left = '-42px' //Прикрутить адаптив
+          lineLeft.style.left = `-${calc(42)}px`
           lineLeft.style.width = '0'
         }
       })
@@ -102,13 +107,13 @@ function App() {
           firstFLip = true
         }
 
-        if ($(window).scrollTop() - scrollCount >= 1000) { //Прикрутить адаптив
+        if ($(window).scrollTop() - scrollCount >= calc(1000)) { 
           if (secondFLip === false) {
-            OneOne.style.opacity = 0; OneOne.style.transform = 'translateY(-116px)'; //Прикрутить адаптив
-            TwoOne.style.opacity = 1; TwoOne.style.transform = 'translateY(-116px)';  //Прикрутить адаптив
+            OneOne.style.opacity = 0; OneOne.style.transform = `translateY(-${calc(116)}px)`; 
+            TwoOne.style.opacity = 1; TwoOne.style.transform = `translateY(-${calc(116)}px)`;  
             setTimeout(() => {
-              OneTwo.style.opacity = 0; OneTwo.style.transform = 'translateY(-116px)'; //Прикрутить адаптив
-              TwoTwo.style.opacity = 1; TwoTwo.style.transform = 'translateY(-116px)'; //Прикрутить адаптив
+              OneTwo.style.opacity = 0; OneTwo.style.transform = `translateY(-${calc(116)}px)`; 
+              TwoTwo.style.opacity = 1; TwoTwo.style.transform = `translateY(-${calc(116)}px)`; 
             }, 100);
             secondFLip = true
           }
@@ -125,20 +130,19 @@ function App() {
         }
       } else {
         if (firstFLip === true) {
-          OneOne.style.opacity = 0; OneOne.style.transform = 'translateY(116px)' //Прикрутить адаптив
+          OneOne.style.opacity = 0; OneOne.style.transform = `translateY(${calc(116)}px)` 
           setTimeout(() => {
-            OneTwo.style.opacity = 0; OneTwo.style.transform = 'translateY(116px)' //Прикрутить адаптив
+            OneTwo.style.opacity = 0; OneTwo.style.transform = `translateY(${calc(116)}px)`
           }, 100);
           firstFLip = false
         }
       }
 
       if ((kamazAnimation.getBoundingClientRect().top <= clientHeight * 0.7)) {
-        kamazAnimationBlock.style.transform = 'translateX(1100px)'
+        kamazAnimationBlock.style.transform = `translateX(${calc(1100)}px)`
       } else {
         kamazAnimationBlock.style.transform = 'translateX(0)'
       }
-      // console.log($(window).scrollTop())
 
       if(blockWork.getBoundingClientRect().top <= 0){
         if(pointsTrigger === false){
@@ -146,7 +150,7 @@ function App() {
           pointsTrigger = true
         }
         if($(window).scrollTop()-pointsScrollTop >= 300 && firstPointStep === false){
-          for (let point of points) {point.style.transform = 'translateY(-244px)'} 
+          for (let point of points) {point.style.transform = `translateY(-${calc(244)}px)`} 
           points[0].style.opacity = 0
           points[3].style.opacity = 1
           firstPointStep = true
@@ -157,12 +161,12 @@ function App() {
           firstPointStep = false
         }
         if($(window).scrollTop()-pointsScrollTop >= 900 && secondPointStep === false){
-          for (let point of points) {point.style.transform = 'translateY(-488px)'}
+          for (let point of points) {point.style.transform = `translateY(-${calc(488)}px)`}
           points[1].style.opacity = 0
           points[4].style.opacity = 1
           secondPointStep = true
         }else if ($(window).scrollTop()-pointsScrollTop < 900 && secondPointStep === true){
-          for (let point of points) {point.style.transform = 'translateY(-244px)'}
+          for (let point of points) {point.style.transform = `translateY(-${calc(244)}px)`}
           points[1].style.opacity = 1
           points[4].style.opacity = 0
           secondPointStep = false
@@ -203,8 +207,20 @@ function App() {
       arr.find(it => Math.abs(it - searchNum) === Math.min(...arr.map(it => Math.abs(it - searchNum))));
 
     let control = document.querySelector(".control");
+    let ind, num
 
     control.oninput = function () {
+      num = getNumber(pointPositions, this.value)
+      ind = pointPositions.indexOf(num)
+      showAnswer(ind)
+    }
+
+    control.onchange = function () {
+      num = getNumber(pointPositions, this.value)
+      control.value = num
+      ind = pointPositions.indexOf(num)
+      console.log(ind)
+      showAnswer(ind)
       // console.log(getNumber(pointPositions, this.value))
     }
 

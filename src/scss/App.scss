@@ -456,6 +456,7 @@ $grey-blue: #777282;
                 z-index: 0;
               }
               .control{
+                transition: all 0.3s;
                 -webkit-appearance: none;
                 @include width(646);
                 transform: rotate(90deg);
@@ -467,6 +468,7 @@ $grey-blue: #777282;
                 // background-color: #707070ad;
 
                 &::-webkit-slider-thumb {
+                  transition: all 0.3s;
                   -webkit-appearance: none;
                   appearance: none;
                   @include size(13,13);
