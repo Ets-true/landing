@@ -125,7 +125,7 @@ $grey-blue: #777282;
           position: relative;
           .line-left{
             transition: all 0.3s;
-            @include width(286);
+            width: 0;
             height: 1px;
             background-color: #707070;
             position: absolute;

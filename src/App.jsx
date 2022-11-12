@@ -91,18 +91,21 @@ function App() {
         } else item.style.transform = 'translateX(0)'
       })
 
-      opacityAnimation.forEach(item => {
-        if ((item.getBoundingClientRect().top <= clientHeight * 0.55)) {
+      opacityAnimation.forEach((item,index) => {
+        if (item.getBoundingClientRect().top <= clientHeight * 0.55) {
           item.style.opacity = '1'
-          lineRight.style.width = '594px' //Прикрутить адаптив
-          lineLeft.style.left = '-328px' //Прикрутить адаптив
-          lineLeft.style.width = '286px' //Прикрутить адаптив
+          if(index===0){
+            lineRight.style.width = '594px' //Прикрутить адаптив
+            lineLeft.style.left = '-328px' //Прикрутить адаптив
+            lineLeft.style.width = '286px' //Прикрутить адаптив
+          }
         } else {
           item.style.opacity = '0'
-          lineRight.style.width = '0'
-
-          lineLeft.style.left = `-${calc(42)}px`
-          lineLeft.style.width = '0'
+          if(index===0){
+            lineRight.style.width = '0'
+            lineLeft.style.left = `-${calc(42)}px`
+            lineLeft.style.width = '0'
+          }
         }
       })
 
