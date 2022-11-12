@@ -217,11 +217,24 @@ function App() {
       setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
     }
 
+    function animationFunc(i){
+      console.log(i)
+      control.value = i
+      i++
+      if(i<1000){
+        setTimeout(() => {
+          animationFunc(i)
+        }, 1);
+      }
+    }
+
     control.onchange = function () {
-      num = getNumber(pointPositions, this.value)
-      control.value = num
-      ind = pointPositions.indexOf(num)
-      setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
+
+      animationFunc(0)
+      // num = getNumber(pointPositions, this.value)
+      // control.value = num
+      // ind = pointPositions.indexOf(num)
+      // setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
       // console.log(getNumber(pointPositions, this.value))
     }
 
