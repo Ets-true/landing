@@ -12,7 +12,9 @@ import animationData from './media/lottie/RM-lottie.json'
 function App() {
 
   const calc = (val)=>{
-    return val*1024/1920 + (val - val*1024/1920 ) * ((document.documentElement.clientWidth - 1024) / (1920 - 1024))
+    if(document.documentElement.clientWidth<1920){
+      return val*1024/1920 + (val - val*1024/1920 ) * ((document.documentElement.clientWidth - 1024) / (1920 - 1024))
+    } else return val
   }
 
   const lottieRef = useRef(null)
@@ -205,7 +207,7 @@ function App() {
       
       scrollPosition = $(window).scrollTop() - document.querySelector('.block-More').offsetTop
       if (scrollPosition >= 0) {
-       let frame = (anim.totalFrames / 100) * (scrollPosition / (document.querySelector('.block-More').offsetHeight / 200));
+       let frame = (anim.totalFrames / 100) * (scrollPosition / (document.querySelector('.block-More').offsetHeight / 160));
        console.log(frame)
        anim.goToAndStop(frame, true);
       }
@@ -298,6 +300,7 @@ function App() {
         </div>
         <div className="background-blue"></div>
 
+        <div className="content-container">
         <div className="block-About">
           <div className="about-wrap">
             <div className="about-info">
@@ -330,7 +333,7 @@ function App() {
             </div>
           </div>
         </div>
-
+        
         <div className="block-More">
           <div className="more-wrap">
             <div className="more-info">
@@ -392,6 +395,7 @@ function App() {
             </div>
           </div>
         </div>
+        </div>
 
         <div className="block-Form">
           <div className="Form-title">{Content.Form.title}</div>
@@ -399,6 +403,8 @@ function App() {
           <div className="Form-body"></div>
         </div>
 
+
+        <div className="content-container">
         <div className="block-Partners">
           <div className="Partners-wrap">
             <div className="partners-title title-animation">
@@ -458,13 +464,15 @@ function App() {
             </div>
           </div>
         </div>
+        </div>
 
         <div className="loader">
           <div className="loader-panel"></div>
         </div>
       </div>
 
-      <div className="block-Footer">
+      <div className="container-footer">
+        <div className="block-Footer">
         <div className="Footer-row">
           <div className="Footer-form">
             <div className="form-title">{Content.Footer.form.formText}</div>
@@ -481,6 +489,8 @@ function App() {
         </div>
         <div className="Footer-department"></div>
       </div>
+      </div>
+      
     </div>
   );
 }

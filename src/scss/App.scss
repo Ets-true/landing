@@ -51,12 +51,17 @@ $grey-blue: #777282;
     .title-block{
       position: sticky;
       @include top(266);
-      @include paddingLeft(346);
+      width: 100%;
+      max-width: 1920px;
+      margin: auto;
+      // @include paddingLeft(346);
       .title{
+        @include marginLeft(346);
         @include fontSize(54);
         color: black;
       }
       .subtitle{
+        @include marginLeft(346);
         @include width(363);
         @include marginTop(5);
         @include fontSize(22);
@@ -90,6 +95,13 @@ $grey-blue: #777282;
       height: 100vh;
       background-color: $purple-blue;
   }
+
+  .content-container{
+    width: 100%;
+    max-width: 1920px;
+    margin: auto;
+  }
+  
 
   .block-About{
     width: 100vw;
@@ -306,6 +318,10 @@ $grey-blue: #777282;
           position: relative;
           z-index: 0;
           overflow: hidden;
+          @include large{
+            border-top-left-radius: 40px;
+            border-bottom-left-radius: 40px;
+          }
           .kamaz-mask{
             transition: all 0.5s;
             position: absolute;
@@ -540,6 +556,10 @@ $grey-blue: #777282;
   }
   }
 
+.container-footer{
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
 .block-Footer{
   color: white;
   @include paddingLeft(262);
@@ -580,6 +600,7 @@ $grey-blue: #777282;
     }
     .Footer-info{}
   }
+}
 }
 }
 
