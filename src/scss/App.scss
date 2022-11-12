@@ -216,9 +216,18 @@ $grey-blue: #777282;
         @include marginLeft(361);
         display: flex;
         align-items: center;
-        .more-lottie{
+        @include height(484);
+        .lottie-wrap{
+          position: relative;
           @include size(338,484);
-          background-color: grey;
+          // overflow: hidden;
+          .more-lottie{
+            position: absolute;
+            top: -280px;left: -60px;
+            @include size(438,784);
+            // @include size(338,484);
+            // background-color: grey;
+          }
         }
         .more-advantage-group{
           @include marginLeft(116);

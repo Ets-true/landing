@@ -4,14 +4,18 @@ import './scss/App.scss'
 import { ReactComponent as Wave } from './media/img/wave.svg';
 import { ReactComponent as Mask } from './media/img/mask.svg';
 import { Content } from './Content'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import $ from 'jquery'
+import lottie from 'lottie-web'
+import animationData from './media/lottie/RM-lottie.json'
 
 function App() {
 
   const calc = (val)=>{
     return val*1024/1920 + (val - val*1024/1920 ) * ((document.documentElement.clientWidth - 1024) / (1920 - 1024))
   }
+
+  const lottieRef = useRef(null)
 
 
   useEffect(() => {
@@ -246,8 +250,17 @@ function App() {
       setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
     }
 
+    const anim = lottie.loadAnimation({
+      container: lottieRef.current,
+      animationData: animationData
+    })
+
+    anim.play()
+
 
   }, [])
+
+ 
 
   const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
 
@@ -319,7 +332,9 @@ function App() {
               </div>
             </div>
             <div className="more-content">
-              <div className="more-lottie"></div>
+              <div className="lottie-wrap">
+                <div className="more-lottie" id="lottie" ref={lottieRef}></div>
+              </div>
               <div className="more-advantage-group">
                 {Content.aboutMore.advantageGroup.map(advatnageLine => {
                   return (
