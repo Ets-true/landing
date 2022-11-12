@@ -19,6 +19,8 @@ function App() {
   }
 
   const lottieRef = useRef(null)
+  let pointPositions = []
+  let control 
 
 
   useEffect(() => {
@@ -216,23 +218,48 @@ function App() {
     })
 
 
+  }, [])
+
+
+  const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
+
+  let temp
+  function animationFunc(value){
+    if(control.value < value){
+      temp = control.value
+      temp++
+      control.value = temp
+      setTimeout(() => {
+        animationFunc(value)
+      }, 1);
+    }
+
+    if(control.value > value){
+      temp = control.value
+      temp--
+      control.value =  temp
+      setTimeout(() => {
+        animationFunc(value)
+      }, 1);
+    }
+  }
+
+  useEffect(() => {
+    control = document.querySelector(".control");
     let questions = document.querySelectorAll(".QA-question");
 
-    let pointPositions = []
+    // let pointPositions = []
     let startPosition = 53
     let endPosition = questions[6].offsetTop + questions[6].offsetHeight
 
     questions.forEach(question => {
       let position = Math.floor((question.offsetTop + question.offsetHeight / 2 - startPosition) / endPosition * 1000)
-      // console.log(position)
       pointPositions.push(position)
     })
-    // console.log(pointPositions)
 
     const getNumber = (arr, searchNum) =>
       arr.find(it => Math.abs(it - searchNum) === Math.min(...arr.map(it => Math.abs(it - searchNum))));
 
-    let control = document.querySelector(".control");
     let ind, num
 
     
@@ -243,44 +270,17 @@ function App() {
       setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
     }
 
-    let temp
-    function animationFunc(value){
-      if(control.value < value){
-        temp = control.value
-        temp++
-        control.value = temp
-        setTimeout(() => {
-          animationFunc(value)
-        }, 1);
-      }
-
-      if(control.value > value){
-        temp = control.value
-        temp--
-        control.value =  temp
-        setTimeout(() => {
-          animationFunc(value)
-        }, 1);
-      }
-    }
-
     control.onchange = function () {
       num = getNumber(pointPositions, this.value)
       animationFunc(num)
-      // control.value = num
       ind = pointPositions.indexOf(num)
       setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
     }
-
-
-  }, [])
-
- 
-
-  const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
+  }, [answer])
+  
 
   const showAnswer = (index) => {
-    // control.value = pointPositions[index]
+    animationFunc(pointPositions[index])
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
 
@@ -415,7 +415,6 @@ function App() {
             <div className="partners-row">
               {Content.aboutPartners.partners.map((partner, index) => {
                 return (
-                  // <a href='' about='blanc'></a>
                   <div className="partner">
                     <div className="partner-img opacity-animation-block"><img src={require(`./media/img/partners/${index + 1}.png`)} alt="" /></div>
                     <div className="partner-name text-animation">
