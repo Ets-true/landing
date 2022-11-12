@@ -515,7 +515,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="Footer-department"></div>
+        <div className="Footer-department">powered by <a href="https://departmentview.ru" target='_blank'>department</a></div>
       </div>
       </div>
       

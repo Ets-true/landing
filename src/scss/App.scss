@@ -562,12 +562,16 @@ $grey-blue: #777282;
   margin: auto;
 .block-Footer{
   color: white;
-  @include paddingLeft(262);
-  @include paddingRight(232);
   transform: translateY(-200px);
   z-index: 50;
+  a{
+    text-decoration: none;
+    color: white;
+  }
   .Footer-row{
     display: flex;
+    @include paddingLeft(262);
+    @include paddingRight(232);
     .Footer-form{
       .form-title{
         @include fontSize(25);
@@ -611,10 +615,6 @@ $grey-blue: #777282;
           @include paddingRight(50);
           @include width(235);
           @include marginBottom(75);
-          a{
-            text-decoration: none;
-            color: white;
-          }
           .title{
             @include fontSize(22);
           }
@@ -641,6 +641,16 @@ $grey-blue: #777282;
           }
         }
       }
+    }
+  }
+  .Footer-department{
+    font-family: 'Montserrat';
+    @include fontSize(17);
+    text-align: center;
+    transform: translateY(adpt(125));
+    a{
+      font-family: 'SerifSB';
+
     }
   }
 }
