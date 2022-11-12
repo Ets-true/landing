@@ -224,10 +224,10 @@ function App() {
   const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
 
   let temp
-  function animationFunc(value){
+  const animationFunc = (value, speed = 1)=>{
     if(control.value < value){
       temp = control.value
-      temp++
+      temp += speed
       control.value = temp
       setTimeout(() => {
         animationFunc(value)
@@ -236,13 +236,15 @@ function App() {
 
     if(control.value > value){
       temp = control.value
-      temp--
+      temp -= speed
       control.value =  temp
       setTimeout(() => {
         animationFunc(value)
       }, 1);
     }
   }
+
+  
 
   useEffect(() => {
     control = document.querySelector(".control");
@@ -280,7 +282,7 @@ function App() {
   
 
   const showAnswer = (index) => {
-    animationFunc(pointPositions[index])
+    animationFunc(pointPositions[index], 10)
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
 
