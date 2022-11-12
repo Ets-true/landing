@@ -3,6 +3,7 @@ import './scss/assets/fonts.scss'
 import './scss/App.scss'
 import { ReactComponent as Wave } from './media/img/wave.svg';
 import { ReactComponent as Mask } from './media/img/mask.svg';
+import { ReactComponent as File } from './media/img/files.svg';
 import { Content } from './Content'
 import { useEffect, useState, useRef } from 'react';
 import $ from 'jquery'
@@ -481,9 +482,35 @@ function App() {
             <div className="copyright">{Content.Footer.form.copyright}</div>
           </div>
           <div className="Footer-info">
-            <div className="info-block">
-              <div className="title"></div>
-              <div className="text"></div>
+            <div className="info-column">
+              <div className="info-block">
+                <div className="title">{Content.Footer.info.phone.title}</div>
+                <div className="text">{Content.Footer.info.phone.value}</div>
+              </div>
+              <div className="info-block">
+                <div className="title">{Content.Footer.info.address.title}</div>
+                <div className="text">{Content.Footer.info.address.value}</div>
+              </div>
+            </div>
+            <div className="info-column">
+              <div className="info-block">
+                <div className="title">{Content.Footer.info.mail.title}</div>
+                <div className="text">{Content.Footer.info.mail.value}</div>
+              </div>
+              <div className="info-block">
+                <a href="https://regeneration-oil.ru/files/cardRM.pdf" target="_blank">
+                <div className="company-card">
+                  <div className="card-title">{Content.Footer.info.card.title}</div>
+                  <div className="card-icon"><File/></div>
+                </div>
+                </a>
+              </div>
+            </div>
+            <div className="info-column">
+              <div className="info-block">
+                <div className="title">{Content.Footer.info.site.title}</div>
+                <div className="text"><a href="https://regeneration-oil.ru" target='_blank'>{Content.Footer.info.site.value}</a></div>
+              </div>
             </div>
           </div>
         </div>

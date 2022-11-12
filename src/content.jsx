@@ -171,7 +171,8 @@ export const Content = {
         title: 'Карточка компании'
       },
       site: {
-        title: 'Официальный сайт'
+        title: 'Официальный сайт',
+        value: 'www.regeneration-oil.ru'
       }
     }
   }

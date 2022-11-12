@@ -598,7 +598,47 @@ $grey-blue: #777282;
         text-align: center;
       }
     }
-    .Footer-info{}
+    .Footer-info{
+      display: flex;
+      @include marginLeft(190);
+      .info-column{
+
+        .info-block{
+          @include paddingLeft(50);
+          @include paddingRight(50);
+          @include width(235);
+          @include marginBottom(75);
+          a{
+            text-decoration: none;
+            color: white;
+          }
+          .title{
+            @include fontSize(22);
+          }
+          .text{
+            @include fontSize(20);
+            @include marginTop(25);
+            @include property(line-height,24);
+           
+          }
+          .company-card{
+            @include fontSize(22);
+            display: flex;
+            .card-title{
+              @include width(113);
+            }
+            .card-icon{
+              @include size(39,44);
+              @include marginLeft(35);
+              svg{
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 }
