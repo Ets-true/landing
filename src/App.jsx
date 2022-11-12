@@ -67,6 +67,13 @@ function App() {
     let pointsScrollTop
     let firstPointStep = false
     let secondPointStep = false
+    let scrollPosition
+
+    const anim = lottie.loadAnimation({
+      container: lottieRef.current,
+      animationData: animationData,
+      autoplay: false,
+    })
 
 
     window.addEventListener('scroll', function (e) {
@@ -191,6 +198,15 @@ function App() {
         }
       // }
 
+
+      
+      scrollPosition = $(window).scrollTop() - document.querySelector('.block-More').offsetTop
+      if (scrollPosition >= 0) {
+       let frame = (anim.totalFrames / 100) * (scrollPosition / (document.querySelector('.block-More').offsetHeight / 200));
+       console.log(frame)
+       anim.goToAndStop(frame, true);
+      }
+
     })
 
 
@@ -249,13 +265,6 @@ function App() {
       ind = pointPositions.indexOf(num)
       setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
     }
-
-    const anim = lottie.loadAnimation({
-      container: lottieRef.current,
-      animationData: animationData
-    })
-
-    anim.play()
 
 
   }, [])
