@@ -224,10 +224,10 @@ function App() {
   const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
 
   let temp
-  const animationFunc = (value, speed = 1)=>{
+  const animationFunc = (value)=>{
     if(control.value < value){
       temp = control.value
-      temp += speed
+      temp++
       control.value = temp
       setTimeout(() => {
         animationFunc(value)
@@ -236,7 +236,7 @@ function App() {
 
     if(control.value > value){
       temp = control.value
-      temp -= speed
+      temp--
       control.value =  temp
       setTimeout(() => {
         animationFunc(value)
@@ -282,7 +282,7 @@ function App() {
   
 
   const showAnswer = (index) => {
-    animationFunc(pointPositions[index], 10)
+    animationFunc(pointPositions[index])
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
 
