@@ -253,6 +253,9 @@ function App() {
 
 
   useEffect(() => {
+    $(document).scrollTop(window.scrollY+1);
+    $(document).scrollTop(window.scrollY-1);
+    // console.log(window.scrollY)
     control = document.querySelector(".control");
     let questions = document.querySelectorAll(".QA-question");
 

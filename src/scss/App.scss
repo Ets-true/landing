@@ -351,16 +351,18 @@ $grey: #9C9C9C;
             // background-color: green;
             @include marginBottom(115);
             .point-num{
+              color: #F59743;
               position: absolute;
               top: -20px; left: 0;
+
               @include fontSize(170);
-              opacity: 0.03;
+              opacity: 0.08;
             }
             .point-name{
               position: absolute;
               bottom: 0;
               @include left(195);
-              @include fontSize(22);
+              @include fontSize(25);
             }
           }
         }
