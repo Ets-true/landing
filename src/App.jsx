@@ -465,7 +465,7 @@ function App() {
                       </div>
 
                     </div>
-                    <div className="send-button" onClick={() => sendMail()}>
+                    <div className="send-button">
                       <div className="loading"></div>
                       Отправить
                     </div>
