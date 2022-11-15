@@ -4,6 +4,9 @@ $white: #FEFFFA;
 $purple-blue: #22223B;
 $grey-blue: #777282;
 
+$blue: #002266;
+$grey: #9C9C9C;
+
 .App {
   background-color: $white;
   font-family: 'Gothic';
@@ -106,13 +109,13 @@ $grey-blue: #777282;
   .block-About{
     width: 100vw;
     max-width:100%;
-    height: 130vh;
+    height: 60vh;
     background-color: $white;
     position: relative;
     @include paddingBottom(150);
     .about-wrap{
-      position: sticky;
-      @include top(219);
+      // position: sticky;
+      // @include top(219);
       .about-info{
         @include marginTop(219);
         @include marginLeft(422);
@@ -124,6 +127,7 @@ $grey-blue: #777282;
           }
         }
         .about-text{
+          @include property(line-height,27);
           @include marginLeft(108);
           @include fontSize(22);
           @include width(537);
@@ -190,6 +194,7 @@ $grey-blue: #777282;
             }
           }
           .tezis-text{
+            @include property(line-height,24);
             @include width(600);
             @include marginLeft(122);
             @include fontSize(20);
@@ -387,7 +392,174 @@ $grey-blue: #777282;
       @include fontSize(22);
       color: white;
     }
-    .Form-body{}
+    .Form-line{
+      transition: all 0.3s;
+      margin: auto;
+      @include marginTop(63);
+      width: 0px;
+      // @include width(1036);
+      height: 1px;
+      background-color: #707070;
+    }
+    .Form-body{
+      display: none;
+      .form {
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 1920px;
+        @include height(800);
+        .form__wrapper {
+          width: 100%;
+          @include height(700);
+          max-width: 1920px;
+          position: relative;
+          .form__body {
+            position: absolute;
+            @include top(0);
+            left: 50%;
+            transform: translateX(-50%);
+            @include size(1040, 815);
+            .form__animationBlock {
+              width: 100%;
+              @include height(480);
+              position: relative;
+              display: flex;
+              @include paddingTop(240);
+              // @include paddingTop(0);
+              @include paddingLeft(83);
+              @include fontSize(20);
+              // overflow: hidden;
+              .form__title {
+                position: absolute;
+                @include top(58);
+                @include left(83);
+                @include fontSize(25);
+              }
+              .line {
+                transition: all 2s;
+                position: absolute;
+                @include top(335);
+                @include left(83);
+                @include width(418);
+                height: 2px;
+                background-color: $grey;
+                &:nth-child(2) {
+                  @include top(502);
+                }
+                .line__body {
+                  @include width(418);
+                  height: 2px;
+                  position: relative;
+                  background-color: $blue;
+                  &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0px;
+                    height: 2px;
+                  }
+                }
+              }
+              .dataBlock__column_left {
+                .point {
+                  display: flex;
+                  .point__num {
+                    color: #002266;
+                  }
+                  .point__title {
+                    @include marginLeft(25);
+                    color: #002266;
+                  }
+                  @include marginBottom(15);
+                }
+      
+                input {
+                  @include marginBottom(95);
+                  @include marginLeft(49);
+                  border: none;
+                  outline: none;
+                  @include width(305);
+                }
+              }
+      
+              .dataBlock__column_right {
+                position: absolute;
+                @include top(152);
+                @include left(501);
+                @include size(445, 530);
+                @include borderRadius(10);
+                border: 2px solid $blue;
+      
+                .wrapper {
+                  position: relative;
+                  @include size(445, 530);
+                  .posab-wrapper {
+                    transition: all 0.2s;
+                    position: absolute;
+                    @include bottom(108);
+                    .point {
+                      display: flex;
+                      @include marginLeft(30);
+                      .point__num {
+                        color: #002266;;
+                      }
+                      .point__title {
+                        @include marginLeft(25);
+                        color: #002266;
+                      }
+                      @include marginBottom(15);
+                    }
+                    textarea {
+                      transition: all 0.2s;
+                      resize: none;
+                      @include width(314);
+                      @include property(min-height,295);
+                      @include property(max-height,525);
+                      @include marginLeft(82);
+                      outline: none;
+                      border: none;
+                      overflow: scroll;
+                      &::-webkit-scrollbar {
+                        width: 2px;
+                      }
+                    }
+                  }
+                }
+              }
+      
+              .send-button {
+                position: absolute;
+                @include bottom(-20);
+                @include right(325);
+                display: flex;
+                user-select: none;
+                cursor: pointer;
+                &-close{
+                  @include top(45);
+                  @include right(-150);
+                  color: #FF5E8A;
+                  .loading {
+                    background-color: #FF5E8A !important;
+                  }
+                }
+      
+                .loading {
+                  @include size(45, 6);
+                  @include borderRadius(10);
+                  background-color: $blue;
+                  @include marginRight(11);
+                  @include marginTop(8);
+                }
+              }
+      
+              .close-button {}
+            }
+          }
+        }
+      }
+    }
   }
 
   .block-Partners{

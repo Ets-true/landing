@@ -12,15 +12,18 @@ import animationData from './media/lottie/RM-lottie.json'
 
 function App() {
 
-  const calc = (val)=>{
-    if(document.documentElement.clientWidth<1920){
-      return val*1024/1920 + (val - val*1024/1920 ) * ((document.documentElement.clientWidth - 1024) / (1920 - 1024))
+  const calc = (val) => {
+    if (document.documentElement.clientWidth < 1920) {
+      return val * 1024 / 1920 + (val - val * 1024 / 1920) * ((document.documentElement.clientWidth - 1024) / (1920 - 1024))
     } else return val
   }
 
   const lottieRef = useRef(null)
   let pointPositions = []
-  let control 
+  let control
+  let FormButton
+  let FormLine
+  let FormBody
 
 
   useEffect(() => {
@@ -64,8 +67,8 @@ function App() {
     let res
     let footerTrigger = false
 
-    let blockWork =  document.querySelector('.block-Work')
-    let points =  document.querySelector('.work-points').children
+    let blockWork = document.querySelector('.block-Work')
+    let points = document.querySelector('.work-points').children
     points[3].style.opacity = 0
     points[4].style.opacity = 0
     let pointsTrigger = false
@@ -96,17 +99,17 @@ function App() {
         } else item.style.transform = 'translateX(0)'
       })
 
-      opacityAnimation.forEach((item,index) => {
+      opacityAnimation.forEach((item, index) => {
         if (item.getBoundingClientRect().top <= clientHeight * 0.55) {
           item.style.opacity = '1'
-          if(index===0){
+          if (index === 0) {
             lineRight.style.width = '594px' //Прикрутить адаптив
             lineLeft.style.left = '-328px' //Прикрутить адаптив
             lineLeft.style.width = '286px' //Прикрутить адаптив
           }
         } else {
           item.style.opacity = '0'
-          if(index===0){
+          if (index === 0) {
             lineRight.style.width = '0'
             lineLeft.style.left = `-${calc(42)}px`
             lineLeft.style.width = '0'
@@ -126,13 +129,13 @@ function App() {
           firstFLip = true
         }
 
-        if ($(window).scrollTop() - scrollCount >= calc(1000)) { 
+        if ($(window).scrollTop() - scrollCount >= calc(1000)) {
           if (secondFLip === false) {
-            OneOne.style.opacity = 0; OneOne.style.transform = `translateY(-${calc(116)}px)`; 
-            TwoOne.style.opacity = 1; TwoOne.style.transform = `translateY(-${calc(116)}px)`;  
+            OneOne.style.opacity = 0; OneOne.style.transform = `translateY(-${calc(116)}px)`;
+            TwoOne.style.opacity = 1; TwoOne.style.transform = `translateY(-${calc(116)}px)`;
             setTimeout(() => {
-              OneTwo.style.opacity = 0; OneTwo.style.transform = `translateY(-${calc(116)}px)`; 
-              TwoTwo.style.opacity = 1; TwoTwo.style.transform = `translateY(-${calc(116)}px)`; 
+              OneTwo.style.opacity = 0; OneTwo.style.transform = `translateY(-${calc(116)}px)`;
+              TwoTwo.style.opacity = 1; TwoTwo.style.transform = `translateY(-${calc(116)}px)`;
             }, 100);
             secondFLip = true
           }
@@ -149,7 +152,7 @@ function App() {
         }
       } else {
         if (firstFLip === true) {
-          OneOne.style.opacity = 0; OneOne.style.transform = `translateY(${calc(116)}px)` 
+          OneOne.style.opacity = 0; OneOne.style.transform = `translateY(${calc(116)}px)`
           setTimeout(() => {
             OneTwo.style.opacity = 0; OneTwo.style.transform = `translateY(${calc(116)}px)`
           }, 100);
@@ -163,29 +166,29 @@ function App() {
         kamazAnimationBlock.style.transform = 'translateX(0)'
       }
 
-      if(blockWork.getBoundingClientRect().top <= 0){
-        if(pointsTrigger === false){
+      if (blockWork.getBoundingClientRect().top <= 0) {
+        if (pointsTrigger === false) {
           pointsScrollTop = $(window).scrollTop()
           pointsTrigger = true
         }
-        if($(window).scrollTop()-pointsScrollTop >= 300 && firstPointStep === false){
-          for (let point of points) {point.style.transform = `translateY(-${calc(244)}px)`} 
+        if ($(window).scrollTop() - pointsScrollTop >= 300 && firstPointStep === false) {
+          for (let point of points) { point.style.transform = `translateY(-${calc(244)}px)` }
           points[0].style.opacity = 0
           points[3].style.opacity = 1
           firstPointStep = true
-        } else if ($(window).scrollTop()-pointsScrollTop < 300 && firstPointStep === true){
-          for (let point of points) {point.style.transform = 'translateY(0)'} 
+        } else if ($(window).scrollTop() - pointsScrollTop < 300 && firstPointStep === true) {
+          for (let point of points) { point.style.transform = 'translateY(0)' }
           points[0].style.opacity = 1
           points[3].style.opacity = 0
           firstPointStep = false
         }
-        if($(window).scrollTop()-pointsScrollTop >= 900 && secondPointStep === false){
-          for (let point of points) {point.style.transform = `translateY(-${calc(488)}px)`}
+        if ($(window).scrollTop() - pointsScrollTop >= 900 && secondPointStep === false) {
+          for (let point of points) { point.style.transform = `translateY(-${calc(488)}px)` }
           points[1].style.opacity = 0
           points[4].style.opacity = 1
           secondPointStep = true
-        }else if ($(window).scrollTop()-pointsScrollTop < 900 && secondPointStep === true){
-          for (let point of points) {point.style.transform = `translateY(-${calc(244)}px)`}
+        } else if ($(window).scrollTop() - pointsScrollTop < 900 && secondPointStep === true) {
+          for (let point of points) { point.style.transform = `translateY(-${calc(244)}px)` }
           points[1].style.opacity = 1
           points[4].style.opacity = 0
           secondPointStep = false
@@ -194,28 +197,31 @@ function App() {
 
 
       // if ((Footer.getBoundingClientRect().top <= clientHeight)) {
-        res =  (Footer.getBoundingClientRect().top / clientHeight) * 1.97
-        if (res <= 1 && footerTrigger == false){
-          footerTrigger = true
-          res = 0.95
-          Body.style.transform = `scale(${res})`
-        }
-        if(res > 1 && footerTrigger) {
-          footerTrigger = false
-          Body.style.transform = `scale(1)`
-        }
+      res = (Footer.getBoundingClientRect().top / clientHeight) * 1.97
+      if (res <= 1 && footerTrigger == false) {
+        footerTrigger = true
+        res = 0.95
+        Body.style.transform = `scale(${res})`
+      }
+      if (res > 1 && footerTrigger) {
+        footerTrigger = false
+        Body.style.transform = `scale(1)`
+      }
       // }
 
 
-      
+
       scrollPosition = $(window).scrollTop() - document.querySelector('.block-More').offsetTop
       if (scrollPosition >= 0) {
-       let frame = (anim.totalFrames / 100) * (scrollPosition / (document.querySelector('.block-More').offsetHeight / 160));
-       console.log(frame)
-       anim.goToAndStop(frame, true);
+        let frame = (anim.totalFrames / 100) * (scrollPosition / (document.querySelector('.block-More').offsetHeight / 160));
+        anim.goToAndStop(frame, true);
       }
 
     })
+
+    FormButton = document.querySelector('.Form-button')
+    FormLine = document.querySelector('.Form-line')
+    FormBody = document.querySelector('.Form-body')
 
 
   }, [])
@@ -224,8 +230,8 @@ function App() {
   const [answer, setAnswer] = useState([`.01 ${Content.QA.questions[0].title}`, Content.QA.questions[0].text])
 
   let temp
-  const animationFunc = (value)=>{
-    if(control.value < value){
+  const animationFunc = (value) => {
+    if (control.value < value) {
       temp = control.value
       temp++
       control.value = temp
@@ -234,17 +240,17 @@ function App() {
       }, 1);
     }
 
-    if(control.value > value){
+    if (control.value > value) {
       temp = control.value
       temp--
-      control.value =  temp
+      control.value = temp
       setTimeout(() => {
         animationFunc(value)
       }, 1);
     }
   }
 
-  
+
 
   useEffect(() => {
     control = document.querySelector(".control");
@@ -264,7 +270,7 @@ function App() {
 
     let ind, num
 
-    
+
 
     control.oninput = function () {
       num = getNumber(pointPositions, this.value)
@@ -279,11 +285,25 @@ function App() {
       setAnswer([`.0${ind + 1} ${Content.QA.questions[ind].title}`, Content.QA.questions[ind].text])
     }
   }, [answer])
-  
+
 
   const showAnswer = (index) => {
     animationFunc(pointPositions[index])
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
+  }
+
+  const openForm = () => {
+    FormButton.style.display = 'none'
+    FormLine.style.width = `${calc(1036)}px`
+    FormBody.style.display =  'block'
+  }
+
+  const closeForm = ()=>{
+    FormButton.style.display = 'block'
+    FormLine.style.width = `0`
+    FormLine.style.display = 'none'
+    FormBody.style.display =  'none'
+
   }
 
 
@@ -304,168 +324,222 @@ function App() {
         <div className="background-blue"></div>
 
         <div className="content-container">
-        <div className="block-About">
-          <div className="about-wrap">
-            <div className="about-info">
-              <div className="about-title title-animation">
-                <div className="title-animation-block"></div>
-                Что такое <span>регенерация</span>
+          <div className="block-About">
+            <div className="about-wrap">
+              <div className="about-info">
+                <div className="about-title title-animation">
+                  <div className="title-animation-block"></div>
+                  Что такое <span>регенерация</span>
+                </div>
+                <div className="about-text text-animation">
+                  <div className="text-animation-block"></div>
+                  {Content.aboutRegeneration.text}
+                </div>
               </div>
-              <div className="about-text text-animation">
-                <div className="text-animation-block"></div>
-                {Content.aboutRegeneration.text}
-              </div>
-            </div>
-            <div className="about-tezis-group">
-              <div className="line">
-                <div className="line-left"></div>
-                <div className="line-title opacity-animation-block">{Content.aboutRegeneration.lineTitle}</div>
-                <div className="line-right"></div>
-              </div>
-              <div className="tezis-wrap opacity-animation-block">
-                {Content.aboutRegeneration.tezisGroup.map(tezis => {
-                  return (
-                    <div className="tezis">
-                      <div className="tezis-name">{tezis.name}</div>
-                      <div className="tezis-points"></div>
-                      <div className="tezis-text">{tezis.text}</div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="block-More">
-          <div className="more-wrap">
-            <div className="more-info">
-              <div className="more-title title-animation">
-                <div className="title-animation-block"></div>
-                {Content.aboutMore.title}
-              </div>
-              <div className="more-text text-animation">
-                <div className="text-animation-block"></div>
-                {Content.aboutMore.text}
-              </div>
-            </div>
-            <div className="more-content">
-              <div className="lottie-wrap">
-                <div className="more-lottie" id="lottie" ref={lottieRef}></div>
-              </div>
-              <div className="more-advantage-group">
-                {Content.aboutMore.advantageGroup.map(advatnageLine => {
-                  return (
-                    <div className="advantage-line flip-animation-block">
-                      {advatnageLine.map(advantage => {
-                        return (
-                          <div className="advantage-example">
-                            <div className="advantage-title">{advantage.title}</div>
-                            <div className="advantage-text">{advantage.text}</div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )
-                })}
+              <div className="about-tezis-group">
+                <div className="line">
+                  <div className="line-left"></div>
+                  <div className="line-title opacity-animation-block">{Content.aboutRegeneration.lineTitle}</div>
+                  <div className="line-right"></div>
+                </div>
+                <div className="tezis-wrap opacity-animation-block">
+                  {Content.aboutRegeneration.tezisGroup.map(tezis => {
+                    return (
+                      <div className="tezis">
+                        <div className="tezis-name">{tezis.name}</div>
+                        <div className="tezis-points"></div>
+                        <div className="tezis-text">{tezis.text}</div>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="block-Work">
-          <div className="work-wrap">
-            <div className="work-title title-animation">
-              <div className="title-animation-block"></div>
-              {Content.aboutWork.title}
-            </div>
-            <div className="work-info">
-              <div className="work-kamaz kamaz-animation">
-                <div className="kamaz-mask kamaz-animation-block"><Mask /></div>
-                <img src={require('./media/img/murm.png')} alt="" />
+          <div className="block-More">
+            <div className="more-wrap">
+              <div className="more-info">
+                <div className="more-title title-animation">
+                  <div className="title-animation-block"></div>
+                  {Content.aboutMore.title}
+                </div>
+                <div className="more-text text-animation">
+                  <div className="text-animation-block"></div>
+                  {Content.aboutMore.text}
+                </div>
               </div>
-              <div className="work-points">
-                {Content.aboutWork.pointNames.map((pointName, index) => {
-                  return (
-                    <div className="point-example" key={`point-${index}`}>
-                      <div className="point-num">.0{index + 1}</div>
-                      <div className="point-name">{pointName}</div>
-                    </div>
-                  )
-                })}
-
+              <div className="more-content">
+                <div className="lottie-wrap">
+                  <div className="more-lottie" id="lottie" ref={lottieRef}></div>
+                </div>
+                <div className="more-advantage-group">
+                  {Content.aboutMore.advantageGroup.map(advatnageLine => {
+                    return (
+                      <div className="advantage-line flip-animation-block">
+                        {advatnageLine.map(advantage => {
+                          return (
+                            <div className="advantage-example">
+                              <div className="advantage-title">{advantage.title}</div>
+                              <div className="advantage-text">{advantage.text}</div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+
+          <div className="block-Work">
+            <div className="work-wrap">
+              <div className="work-title title-animation">
+                <div className="title-animation-block"></div>
+                {Content.aboutWork.title}
+              </div>
+              <div className="work-info">
+                <div className="work-kamaz kamaz-animation">
+                  <div className="kamaz-mask kamaz-animation-block"><Mask /></div>
+                  <img src={require('./media/img/murm.png')} alt="" />
+                </div>
+                <div className="work-points">
+                  {Content.aboutWork.pointNames.map((pointName, index) => {
+                    return (
+                      <div className="point-example" key={`point-${index}`}>
+                        <div className="point-num">.0{index + 1}</div>
+                        <div className="point-name">{pointName}</div>
+                      </div>
+                    )
+                  })}
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="block-Form">
           <div className="Form-title">{Content.Form.title}</div>
-          <div className="Form-button">{Content.Form.button}</div>
-          <div className="Form-body"></div>
+          <div className="Form-button" onClick={openForm}>{Content.Form.button}</div>
+          <div className="Form-line"></div>
+          <div className="Form-body">
+            <div className="form">
+              <div className="form__wrapper">
+                <div className="form__body">
+                  <div className="form__animationBlock">
+                    <div className="form__title">Обратная связь</div>
+                    <div className="line">
+                      <div className="line__body"></div>
+                    </div>
+                    <div className="line">
+                      <div className="line__body"></div>
+                    </div>
+                    <div className="dataBlock__column_left">
+                      <div className="point">
+                        <div className="point__num">.01</div>
+                        <div className="point__title">Ваше имя:</div>
+                      </div>
+                      <input id="name" type="text" placeholder="Иван Иванов" />
+                      <div className="point">
+                        <div className="point__num">.02</div>
+                        <div className="point__title">Email:</div>
+                      </div>
+                      <input id="email" className="mail-input" type="text" placeholder="info@gmail.com" />
+                      <div className="point">
+                        <div className="point__num">.03</div>
+                        <div className="point__title">Телефон:</div>
+                      </div>
+                      <input id="phone" type="text" placeholder="+7 (495) 900-70-70" />
+                    </div>
+                    <div className="dataBlock__column_right">
+                      <div className="wrapper">
+                        <div className="posab-wrapper">
+                          <div className="point">
+                            <div className="point__num">.04</div>
+                            <div className="point__title">Сообщение:</div>
+                          </div>
+                          <textarea id="text" placeholder='Текст вашего сообщения пишите здесь' />
+                        </div>
+                      </div>
+
+                    </div>
+                    <div className="send-button" onClick={() => sendMail()}>
+                      <div className="loading"></div>
+                      Отправить
+                    </div>
+                    <div className="send-button send-button-close" onClick={closeForm}>
+                      <div className="loading"></div>
+                      Свернуть форму
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
 
         <div className="content-container">
-        <div className="block-Partners">
-          <div className="Partners-wrap">
-            <div className="partners-title title-animation">
-              <div className="title-animation-block"></div>
-              {Content.aboutPartners.title}
-            </div>
-            <div className="partners-row">
-              {Content.aboutPartners.partners.map((partner, index) => {
-                return (
-                  <div className="partner">
-                    <div className="partner-img opacity-animation-block"><img src={require(`./media/img/partners/${index + 1}.png`)} alt="" /></div>
-                    <div className="partner-name text-animation">
-                      <div className="text-animation-block"></div>
-                      {partner.name}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-
-        <div className="block-QA">
-          <div className="QA-wrap">
-            <div className="QA-title title-animation">
-              <div className="title-animation-block"></div>
-              {Content.QA.title}
-            </div>
-            <div className="QA">
-              <div className="QA-questions">
-                <div class="control-wrap">
-                  <div className="control-body">
-                    <div className="line"></div>
-                    <input type="range" min={1} max={1000} defaultValue="25" className="control" />
-                  </div>
-                </div>
-                {Content.QA.questions.map((question, index) => {
+          <div className="block-Partners">
+            <div className="Partners-wrap">
+              <div className="partners-title title-animation">
+                <div className="title-animation-block"></div>
+                {Content.aboutPartners.title}
+              </div>
+              <div className="partners-row">
+                {Content.aboutPartners.partners.map((partner, index) => {
                   return (
-                    <div className="QA-question" onClick={() => { showAnswer(index) }}>
-                      <div className="QA-question-number">.0{index + 1}</div>
-                      <div className="QA-question-title">{question.title}</div>
+                    <div className="partner">
+                      <div className="partner-img opacity-animation-block"><img src={require(`./media/img/partners/${index + 1}.png`)} alt="" /></div>
+                      <div className="partner-name text-animation">
+                        <div className="text-animation-block"></div>
+                        {partner.name}
+                      </div>
                     </div>
                   )
                 })}
               </div>
-              <div className="QA-answer-panel">
-                <div className="question text-animation">
-                  <div className="text-animation-block"></div>
-                  {answer[0]}
+            </div>
+          </div>
+
+          <div className="block-QA">
+            <div className="QA-wrap">
+              <div className="QA-title title-animation">
+                <div className="title-animation-block"></div>
+                {Content.QA.title}
+              </div>
+              <div className="QA">
+                <div className="QA-questions">
+                  <div class="control-wrap">
+                    <div className="control-body">
+                      <div className="line"></div>
+                      <input type="range" min={1} max={1000} defaultValue="25" className="control" />
+                    </div>
+                  </div>
+                  {Content.QA.questions.map((question, index) => {
+                    return (
+                      <div className="QA-question" onClick={() => { showAnswer(index) }}>
+                        <div className="QA-question-number">.0{index + 1}</div>
+                        <div className="QA-question-title">{question.title}</div>
+                      </div>
+                    )
+                  })}
                 </div>
-                <div className="answer text-animation">
-                  <div className="text-animation-block"></div>
-                  {answer[1]}
+                <div className="QA-answer-panel">
+                  <div className="question text-animation">
+                    <div className="text-animation-block"></div>
+                    {answer[0]}
+                  </div>
+                  <div className="answer text-animation">
+                    <div className="text-animation-block"></div>
+                    {answer[1]}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
 
         <div className="loader">
@@ -475,50 +549,50 @@ function App() {
 
       <div className="container-footer">
         <div className="block-Footer">
-        <div className="Footer-row">
-          <div className="Footer-form">
-            <div className="form-title">{Content.Footer.form.formText}</div>
-            <div className="form-button">{Content.Footer.form.formButton}</div>
-            <div className="RM">{Content.Footer.form.RM}</div>
-            <div className="copyright">{Content.Footer.form.copyright}</div>
-          </div>
-          <div className="Footer-info">
-            <div className="info-column">
-              <div className="info-block">
-                <div className="title">{Content.Footer.info.phone.title}</div>
-                <div className="text">{Content.Footer.info.phone.value}</div>
-              </div>
-              <div className="info-block">
-                <div className="title">{Content.Footer.info.address.title}</div>
-                <div className="text">{Content.Footer.info.address.value}</div>
-              </div>
+          <div className="Footer-row">
+            <div className="Footer-form">
+              <div className="form-title">{Content.Footer.form.formText}</div>
+              <div className="form-button">{Content.Footer.form.formButton}</div>
+              <div className="RM">{Content.Footer.form.RM}</div>
+              <div className="copyright">{Content.Footer.form.copyright}</div>
             </div>
-            <div className="info-column">
-              <div className="info-block">
-                <div className="title">{Content.Footer.info.mail.title}</div>
-                <div className="text">{Content.Footer.info.mail.value}</div>
-              </div>
-              <div className="info-block">
-                <a href="https://regeneration-oil.ru/files/cardRM.pdf" target="_blank">
-                <div className="company-card">
-                  <div className="card-title">{Content.Footer.info.card.title}</div>
-                  <div className="card-icon"><File/></div>
+            <div className="Footer-info">
+              <div className="info-column">
+                <div className="info-block">
+                  <div className="title">{Content.Footer.info.phone.title}</div>
+                  <div className="text">{Content.Footer.info.phone.value}</div>
                 </div>
-                </a>
+                <div className="info-block">
+                  <div className="title">{Content.Footer.info.address.title}</div>
+                  <div className="text">{Content.Footer.info.address.value}</div>
+                </div>
               </div>
-            </div>
-            <div className="info-column">
-              <div className="info-block">
-                <div className="title">{Content.Footer.info.site.title}</div>
-                <div className="text"><a href="https://regeneration-oil.ru" target='_blank'>{Content.Footer.info.site.value}</a></div>
+              <div className="info-column">
+                <div className="info-block">
+                  <div className="title">{Content.Footer.info.mail.title}</div>
+                  <div className="text">{Content.Footer.info.mail.value}</div>
+                </div>
+                <div className="info-block">
+                  <a href="https://regeneration-oil.ru/files/cardRM.pdf" target="_blank">
+                    <div className="company-card">
+                      <div className="card-title">{Content.Footer.info.card.title}</div>
+                      <div className="card-icon"><File /></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div className="info-column">
+                <div className="info-block">
+                  <div className="title">{Content.Footer.info.site.title}</div>
+                  <div className="text"><a href="https://regeneration-oil.ru" target='_blank'>{Content.Footer.info.site.value}</a></div>
+                </div>
               </div>
             </div>
           </div>
+          <div className="Footer-department">powered by <a href="https://departmentview.ru" target='_blank'>department</a></div>
         </div>
-        <div className="Footer-department">powered by <a href="https://departmentview.ru" target='_blank'>department</a></div>
       </div>
-      </div>
-      
+
     </div>
   );
 }
