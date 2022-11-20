@@ -351,9 +351,16 @@ function App() {
 
   const gotoForm = () =>{
     window.location.hash="form"
+    let scrollTT = window.scrollY
     openForm()
+    var uri = window.location.toString();
+      if (uri.indexOf("#") > 0) {
+        var clean_uri = uri.substring(0,uri.indexOf("#"));
+
+        window.history.replaceState({},document.title, clean_uri);
+    }
     window.scrollTo({
-      top: window.scrollY+calc(300),
+      top:scrollTT+calc(300),
       behavior: "smooth"
     });
     // window.scrollTo({
