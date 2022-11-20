@@ -313,6 +313,8 @@ function App() {
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
 
+
+
   const openForm = () => {
     Form.style.height = `${calc(1030)}px`
     FormButton.style.opacity = 0
@@ -350,6 +352,40 @@ function App() {
       behavior: "smooth"
     });
 
+  }
+
+  const sendMail = () => {
+    let formData = new FormData();
+    let name = document.querySelector('#name').value
+    let phone = document.querySelector('#phone').value
+    let email = document.querySelector('#email').value
+    let text = document.querySelector('#text').value
+
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('text', text);
+
+    $.ajax({
+      url: 'https://mail.regeneration-oil.ru/mail.php', 
+      dataType: 'text', 
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,                         
+      type: 'post',
+      beforeSend: function(){
+      },
+      success: function(){
+      }
+    });
+
+    document.querySelector('#name').value = ''
+    document.querySelector('#phone').value = ''
+    document.querySelector('#email').value = ''
+    document.querySelector('#text').value = ''
+
+    closeForm()
   }
 
   const gotoForm = () =>{
@@ -533,7 +569,7 @@ function App() {
                       </div>
 
                     </div>
-                    <div className="send-button">
+                    <div className="send-button" onClick={sendMail}>
                       <div className="loading"></div>
                       Отправить
                     </div>
