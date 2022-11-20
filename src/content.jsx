@@ -94,7 +94,7 @@ export const Content = {
         url: ''
       },
       {
-        name: 'ООО «МикронИнтер»',
+        name: 'Курчатовский институт',
         url: ''
       }
     ]
@@ -141,7 +141,7 @@ export const Content = {
     form: {
       formText: 'Форма обратной связи',
       formButton: 'Открыть',
-      RM: 'ООО «Регенерация масел»',
+      RM: 'ООО «МикронИнтер»',
       copyright: '©2022'
     },
     info: {

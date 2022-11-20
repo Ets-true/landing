@@ -107,9 +107,9 @@ function App() {
         if (item.getBoundingClientRect().top <= clientHeight * 0.55) {
           item.style.opacity = '1'
           if (index === 0) {
-            lineRight.style.width = '594px' //Прикрутить адаптив
-            lineLeft.style.left = '-339px' //Прикрутить адаптив
-            lineLeft.style.width = '286px' //Прикрутить адаптив
+            lineRight.style.width = `${calc(594)}px`
+            lineLeft.style.left = `-${calc(339)}px`
+            lineLeft.style.width = `${calc(286)}px` //Прикрутить адаптив
           }
         } else {
           item.style.opacity = '0'
@@ -228,7 +228,9 @@ function App() {
       scrollPosition = $(window).scrollTop() - document.querySelector('.block-More').offsetTop
       if (scrollPosition >= 0) {
         let frame = (anim.totalFrames / 100) * (scrollPosition / (document.querySelector('.block-More').offsetHeight / 160));
-        anim.goToAndStop(frame, true);
+        if(frame<260){
+          anim.goToAndStop(frame, true);
+        }
       }
 
     })
@@ -268,8 +270,9 @@ function App() {
 
 
   useEffect(() => {
-    $(document).scrollTop(window.scrollY+1);
-    $(document).scrollTop(window.scrollY-1);
+    window.scrollTo(0,0)
+    // $(document).scrollTop(window.scrollY+1);
+    // $(document).scrollTop(window.scrollY-1);
     // console.log(window.scrollY)
     control = document.querySelector(".control");
     let questions = document.querySelectorAll(".QA-question");
@@ -306,7 +309,8 @@ function App() {
 
 
   const showAnswer = (index) => {
-    animationFunc(pointPositions[index])
+    // animationFunc(pointPositions[index])
+    control.value = pointPositions[index]
     setAnswer([`.0${index + 1} ${Content.QA.questions[index].title}`, Content.QA.questions[index].text])
   }
 
@@ -378,7 +382,7 @@ function App() {
       <div className="App-body">
         <div className="block-Regeneration">
           <div className="sticky-wrap">
-            <div className="logo"><img src={require('./media/img/partners/4.png')} alt="" /></div>
+            <div className="logo"><img src={require('./media/img/micron.png')} alt="" /></div>
             <div className="title-block">
             <div className="title">{Content.Regeneration.title}</div>
             <div className="subtitle">{Content.Regeneration.subtitle}</div>
@@ -404,7 +408,7 @@ function App() {
               <div className="about-tezis-group">
                 <div className="line">
                   <div className="line-left"></div>
-                  <div className="line-title opacity-animation-block">{Content.aboutRegeneration.lineTitle}</div>
+                  <div className="line-text opacity-animation-block">{Content.aboutRegeneration.lineTitle}</div>
                   <div className="line-right"></div>
                 </div>
                 <div className="tezis-wrap opacity-animation-block">

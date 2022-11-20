@@ -46,7 +46,7 @@ $grey: #9C9C9C;
       @include top(40);
       .logo{
         @include marginLeft(55);
-        @include size(219*0.75,74);
+        @include size(219*0.65,74);
           img{
             width: 100%;
             height: auto;
@@ -241,10 +241,9 @@ $grey: #9C9C9C;
           // overflow: hidden;
           .more-lottie{
             position: absolute;
-            top: -280px;left: -60px;
+            @include top(-280);
+            @include left(-60);
             @include size(438,784);
-            // @include size(338,484);
-            // background-color: grey;
           }
         }
         .more-advantage-group{
@@ -254,12 +253,12 @@ $grey: #9C9C9C;
               .advantage-example{
                 &:nth-child(1){
                   transition: all 0.3s;
-                  transform: translateY(116px); //Прикрутить адапатив
+                  transform: translateY(adpt(116)); //Прикрутить адапатив
                   opacity: 0;
                 }
                 &:nth-child(2){
                   transition: all 0.3s;
-                  transform: translateY(116px); //Прикрутить адапатив
+                  transform: translateY(adpt(116)); //Прикрутить адапатив
                   opacity: 0;
                 }
               }
@@ -327,6 +326,10 @@ $grey: #9C9C9C;
           @include large{
             border-top-left-radius: 40px;
             border-bottom-left-radius: 40px;
+          }
+          img{
+            width: 100%;
+            height: 100%;
           }
           .kamaz-mask{
             transition: all 0.65s;
@@ -608,6 +611,14 @@ $grey: #9C9C9C;
           text-align: center;
           @include width(290);
           @include marginLeft(160);
+          &:nth-child(4){
+            .partner-img{
+              img{
+                width: auto;
+                height: 75%;
+              }
+            }
+          }
           .partner-img{
             @include height(90);
             img{
@@ -666,8 +677,10 @@ $grey: #9C9C9C;
             position: absolute;
             @include top(350); 
             @include right(-320);
+            z-index: 0;
             .control-body{
               position: relative;
+              z-index: 0;
               .next-point{
                 position: absolute;
               }
@@ -711,6 +724,7 @@ $grey: #9C9C9C;
             }
           }
           .QA-question{
+            z-index: 100;
             display: flex;
             @include marginBottom(56);
             @include fontSize(20);
@@ -760,7 +774,7 @@ $grey: #9C9C9C;
 .block-Footer{
   transition: opacity 0.3s;
   color: white;
-  transform: translateY(-200px);
+  transform: translateY(adpt(-200));
   z-index: 50;
   opacity: 0;
   a{
