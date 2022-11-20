@@ -24,6 +24,7 @@ function App() {
   let FormButton
   let FormLine
   let FormBody
+  let Form
 
 
   useEffect(() => {
@@ -70,7 +71,10 @@ function App() {
     let blockWork = document.querySelector('.block-Work')
     let points = document.querySelector('.work-points').children
     points[3].style.opacity = 0
+    points[3].children[1].style.transform = `translateX(${calc(100)}px)`
     points[4].style.opacity = 0
+    points[4].children[1].style.transform = `translateX(${calc(100)}px)`
+
     let pointsTrigger = false
     let pointsScrollTop
     let firstPointStep = false
@@ -104,7 +108,7 @@ function App() {
           item.style.opacity = '1'
           if (index === 0) {
             lineRight.style.width = '594px' //Прикрутить адаптив
-            lineLeft.style.left = '-328px' //Прикрутить адаптив
+            lineLeft.style.left = '-339px' //Прикрутить адаптив
             lineLeft.style.width = '286px' //Прикрутить адаптив
           }
         } else {
@@ -160,7 +164,7 @@ function App() {
         }
       }
 
-      if ((kamazAnimation.getBoundingClientRect().top <= clientHeight * 0.7)) {
+      if ((kamazAnimation.getBoundingClientRect().top <= clientHeight * 0.6)) {
         kamazAnimationBlock.style.transform = `translateX(${calc(1100)}px)`
       } else {
         kamazAnimationBlock.style.transform = 'translateX(0)'
@@ -175,23 +179,31 @@ function App() {
           for (let point of points) { point.style.transform = `translateY(-${calc(244)}px)` }
           points[0].style.opacity = 0
           points[3].style.opacity = 1
+          points[3].children[1].style.transform = `translateX(0)`
+
           firstPointStep = true
         } else if ($(window).scrollTop() - pointsScrollTop < 300 && firstPointStep === true) {
           for (let point of points) { point.style.transform = 'translateY(0)' }
           points[0].style.opacity = 1
           points[3].style.opacity = 0
           firstPointStep = false
+          points[3].children[1].style.transform = `translateX(${calc(100)}px)`
+
         }
         if ($(window).scrollTop() - pointsScrollTop >= 900 && secondPointStep === false) {
           for (let point of points) { point.style.transform = `translateY(-${calc(488)}px)` }
           points[1].style.opacity = 0
           points[4].style.opacity = 1
+          points[4].children[1].style.transform = `translateX(0)`
+
           secondPointStep = true
         } else if ($(window).scrollTop() - pointsScrollTop < 900 && secondPointStep === true) {
           for (let point of points) { point.style.transform = `translateY(-${calc(244)}px)` }
           points[1].style.opacity = 1
           points[4].style.opacity = 0
           secondPointStep = false
+          points[4].children[1].style.transform = `translateX(${calc(100)}px)`
+
         }
       }
 
@@ -202,10 +214,12 @@ function App() {
         footerTrigger = true
         res = 0.95
         Body.style.transform = `scale(${res})`
+        Footer.style.opacity = 1;
       }
       if (res > 1 && footerTrigger) {
         footerTrigger = false
         Body.style.transform = `scale(1)`
+        Footer.style.opacity = 0;
       }
       // }
 
@@ -222,6 +236,7 @@ function App() {
     FormButton = document.querySelector('.Form-button')
     FormLine = document.querySelector('.Form-line')
     FormBody = document.querySelector('.Form-body')
+    Form = document.querySelector('.block-Form')
 
 
   }, [])
@@ -296,17 +311,55 @@ function App() {
   }
 
   const openForm = () => {
+    Form.style.height = `${calc(1030)}px`
+    FormButton.style.opacity = 0
     FormButton.style.display = 'none'
+    FormLine.style.display = 'block'
+    FormLine.style.display = 'block'
     FormLine.style.width = `${calc(1036)}px`
-    FormBody.style.display =  'block'
+    FormBody.style.display = 'block'
+    FormBody.style.opacity =  1
+
+    // $(document).scrollTop(window.scrollY+calc(300));
+   
+      window.scrollTo({
+        top: window.scrollY+calc(400),
+        behavior: "smooth"
+      });
+    
   }
 
   const closeForm = ()=>{
+    Form.style.height = `${calc(265)}px`
+    FormButton.style.opacity = 1
     FormButton.style.display = 'block'
-    FormLine.style.width = `0`
-    FormLine.style.display = 'none'
-    FormBody.style.display =  'none'
 
+    FormLine.style.width = `0px`
+    FormLine.style.display = 'none'
+    FormBody.style.opacity =  0
+    setTimeout(() => {
+      FormLine.style.display = 'none'
+      FormBody.style.display = 'none'
+    }, 500);
+    // $(document).scrollTop(window.scrollY-calc(300));
+    window.scrollTo({
+      top: window.scrollY-calc(400),
+      behavior: "smooth"
+    });
+
+  }
+
+  const gotoForm = () =>{
+    window.location.hash="form"
+    openForm()
+    window.scrollTo({
+      top: window.scrollY+calc(300),
+      behavior: "smooth"
+    });
+    // window.scrollTo({
+    //   top: Form.getBoundingClientRect().top - document.documentElement.clientHeight,
+    //   behavior: "smooth"
+    // });
   }
 
 
@@ -317,10 +370,12 @@ function App() {
     <div className="App">
       <div className="App-body">
         <div className="block-Regeneration">
-          <div className="logo"><img src={require('./media/img/RM-logo.png')} alt="" /></div>
-          <div className="title-block">
+          <div className="sticky-wrap">
+            <div className="logo"><img src={require('./media/img/partners/4.png')} alt="" /></div>
+            <div className="title-block">
             <div className="title">{Content.Regeneration.title}</div>
             <div className="subtitle">{Content.Regeneration.subtitle}</div>
+            </div>
           </div>
           <div className="wave-block"><Wave /></div>
         </div>
@@ -423,7 +478,7 @@ function App() {
           </div>
         </div>
 
-        <div className="block-Form">
+        <div className="block-Form" id="form">
           <div className="Form-title">{Content.Form.title}</div>
           <div className="Form-button" onClick={openForm}>{Content.Form.button}</div>
           <div className="Form-line"></div>
@@ -555,7 +610,7 @@ function App() {
           <div className="Footer-row">
             <div className="Footer-form">
               <div className="form-title">{Content.Footer.form.formText}</div>
-              <div className="form-button">{Content.Footer.form.formButton}</div>
+              <div className="form-button" onClick={() => gotoForm()}>{Content.Footer.form.formButton}</div>
               <div className="RM">{Content.Footer.form.RM}</div>
               <div className="copyright">{Content.Footer.form.copyright}</div>
             </div>

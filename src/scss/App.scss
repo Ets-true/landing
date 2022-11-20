@@ -41,44 +41,45 @@ $grey: #9C9C9C;
     background-color: $white;
     position: relative;
     padding-bottom: 13vh;
-    .logo{
-      position: absolute;
-      @include top(40);
-      @include left(55);
-      @include size(219,74);
-      img{
-        width: 100%;
-        height: auto;
-      }
-    }
-    .title-block{
+    .sticky-wrap{
       position: sticky;
-      @include top(266);
-      width: 100%;
-      max-width: 1920px;
-      margin: auto;
-      // @include paddingLeft(346);
-      .title{
-        @include marginLeft(346);
-        @include fontSize(54);
-        color: black;
+      @include top(40);
+      .logo{
+        @include marginLeft(55);
+        @include size(219*0.75,74);
+          img{
+            width: 100%;
+            height: auto;
+          }
       }
-      .subtitle{
-        @include marginLeft(346);
-        @include width(363);
-        @include marginTop(5);
-        @include fontSize(22);
-        @include property(line-height,27);
-        color: $grey-blue;
-        position: relative;
-        &::before{
-          content: '';
-          position: absolute;
-          @include bottom(26);
-          @include left(363+50);
-          @include width(751);
-          height: 1px;
-          background-color: #3A3A48;
+      .title-block{
+        margin: auto;
+        @include marginTop(166);
+        width: 100%;
+        max-width: 1920px;
+        // @include paddingLeft(346);
+        .title{
+          @include marginLeft(346);
+          @include fontSize(54);
+          color: black;
+        }
+        .subtitle{
+          @include marginLeft(346);
+          @include width(363);
+          @include marginTop(5);
+          @include fontSize(22);
+          @include property(line-height,27);
+          color: $grey-blue;
+          position: relative;
+          &::before{
+            content: '';
+            position: absolute;
+            @include bottom(26);
+            @include left(363+50);
+            @include width(751);
+            height: 1px;
+            background-color: #3A3A48;
+          }
         }
       }
     }
@@ -95,7 +96,7 @@ $grey: #9C9C9C;
   .background-blue{
       width: 100vw;
       max-width:100%;
-      height: 100vh;
+      height: 102vh;
       background-color: $purple-blue;
   }
 
@@ -137,7 +138,7 @@ $grey: #9C9C9C;
         .line{
           @include marginTop(95);
           @include marginBottom(39);
-          @include marginLeft(750);
+          @include marginLeft(772);
           position: relative;
           .line-left{
             transition: all 0.3s;
@@ -158,7 +159,7 @@ $grey: #9C9C9C;
             background-color: #707070;
             position: absolute;
             top: 50%;
-            @include left(42+211);
+            @include left(42+211-8);
           }
         };
         .tezis{
@@ -328,7 +329,7 @@ $grey: #9C9C9C;
             border-bottom-left-radius: 40px;
           }
           .kamaz-mask{
-            transition: all 0.5s;
+            transition: all 0.65s;
             position: absolute;
             @include top(0);
             @include left(-172);
@@ -345,7 +346,7 @@ $grey: #9C9C9C;
           @include marginLeft(146);
           z-index: 100;
           .point-example{
-            transition: all 0.5s;
+            transition: transform 0.5s, opacity 1s;
             @include size(788,129);
             position: relative;
             // background-color: green;
@@ -359,6 +360,7 @@ $grey: #9C9C9C;
               opacity: 0.08;
             }
             .point-name{
+              transition: all 0.8s;
               position: absolute;
               bottom: 0;
               @include left(195);
@@ -372,20 +374,27 @@ $grey: #9C9C9C;
   }
 
   .block-Form{
+    @include height(265);
+    transition: all 0.5s;
     width: 100%;
-    @include paddingTop(65);
-    @include paddingBottom(70);
     box-shadow: 0px 0px 12px #00000029;
     @include marginTop(210);
     text-align: center;
+    position: relative;
+    overflow: hidden;
     .Form-title{
-      margin: auto;
       @include fontSize(25);
+      position: absolute;
+      @include top(65);
+      left: 50%; transform: translateX(-50%);
     }
     .Form-button{
+      position: absolute;
+      transition: all 0.3s;
+      @include top(151);
+      left: 50%; transform: translateX(-50%);
       cursor: pointer;
       margin: auto;
-      @include marginTop(55);
       @include width(305);
       @include paddingTop(14);
       @include paddingBottom(14);
@@ -393,18 +402,31 @@ $grey: #9C9C9C;
       @include borderRadius(15);
       @include fontSize(22);
       color: white;
+      z-index: 100;
+
     }
     .Form-line{
+      display: none;
+      position: absolute;
+      @include top(171);
       transition: all 0.3s;
       margin: auto;
-      @include marginTop(63);
+      // @include marginTop(63);
+      left: 50%; transform: translateX(-50%);
       width: 0px;
+      z-index: 0;
       // @include width(1036);
       height: 1px;
       background-color: #707070;
     }
     .Form-body{
+      transition: all 0.3s;
       display: none;
+      z-index: 0;
+      opacity: 0;
+      position: absolute;
+      @include top(200);
+      width: 100%;
       .form {
         top: 0;
         left: 0;
@@ -609,8 +631,8 @@ $grey: #9C9C9C;
     max-width: 100%;
     background-color: $white;
     position: relative;
-    @include paddingBottom(54);
-    @include marginTop(110);
+    @include paddingBottom(0);
+    @include marginTop(60);
     border-bottom-left-radius: 60px;
     border-bottom-right-radius: 60px;
     .QA-wrap{
@@ -619,6 +641,7 @@ $grey: #9C9C9C;
         @include fontSize(40);
       }
       .QA{
+        @include property(line-height,24);
         transition: box-shadow 0.3s;
         // border: 1px solid rgb(240, 210, 154);
         box-shadow: 0px 0px 24px #00000029;
@@ -735,9 +758,11 @@ $grey: #9C9C9C;
   max-width: 1920px;
   margin: auto;
 .block-Footer{
+  transition: opacity 0.3s;
   color: white;
   transform: translateY(-200px);
   z-index: 50;
+  opacity: 0;
   a{
     text-decoration: none;
     color: white;
