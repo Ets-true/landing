@@ -437,12 +437,12 @@ body {
       @include top(200);
       width: 100%;
       .form {
-        top: 0;
-        left: 0;
         width: 100%;
         max-width: 1920px;
         @include height(800);
+        margin: auto;
         .form__wrapper {
+          margin: auto;
           width: 100%;
           @include height(700);
           max-width: 1920px;
@@ -780,7 +780,10 @@ body {
 .block-Footer{
   transition: opacity 0.3s;
   color: white;
-  transform: translateY(adpt(-200));
+  transform: translateY(-200px);
+  @include small {
+    transform: translateY(adpt(-200));
+  }
   z-index: 50;
   opacity: 0;
   a{
