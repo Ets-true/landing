@@ -270,7 +270,6 @@ function App() {
 
 
   useEffect(() => {
-    window.scrollTo(0,0)
     // $(document).scrollTop(window.scrollY+1);
     // $(document).scrollTop(window.scrollY-1);
     // console.log(window.scrollY)

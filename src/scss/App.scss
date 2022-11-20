@@ -290,6 +290,7 @@ $grey: #9C9C9C;
                 @include width(355);
                 @include marginTop(15);
                 @include fontSize(20);
+                @include property(line-height,24);
               }
             }
           }
@@ -368,6 +369,7 @@ $grey: #9C9C9C;
               bottom: 0;
               @include left(195);
               @include fontSize(25);
+              @include property(line-height,27);
             }
           }
         }
