@@ -14,7 +14,8 @@ function send() {
   configFTP.log = util.log;
   const ftpConnect = vinylFTP.create(configFTP);
   gulp.src(`build/**/*.*`, {})
-    .pipe(ftpConnect.dest(`RM-landing/public_html/`));
+    .pipe(ftpConnect.dest(`micron/public_html/`));
+    // .pipe(ftpConnect.dest(`RM-landing/public_html/`));
 
 }
 

@@ -26,6 +26,8 @@ function App() {
   let FormBody
   let Form
 
+  let push
+
 
   useEffect(() => {
     let loader = document.querySelector('.loader')
@@ -35,7 +37,7 @@ function App() {
       loader.style.display = 'none'
     }, 500);
 
-
+    push = document.querySelector('.push')
 
     let titleAnimation = document.querySelectorAll('.title-animation-block')
     let textAnimation = document.querySelectorAll('.text-animation-block')
@@ -354,6 +356,19 @@ function App() {
 
   }
 
+  const showPush = () => {
+    push.style.transform = `translate3d(-50%, 0, 0)`
+    push.style.opacity = 1
+    setTimeout(() => {
+      closePush()
+    }, 5000);
+  }
+
+  const closePush = () => {
+    push.style.transform = `translate3d(-50%, ${calc(50)}px, 0)`
+    push.style.opacity = 0
+  }
+
   const sendMail = () => {
     let formData = new FormData();
     let name = document.querySelector('#name').value
@@ -386,6 +401,7 @@ function App() {
     document.querySelector('#text').value = ''
 
     closeForm()
+    showPush()
   }
 
   const gotoForm = () =>{
@@ -407,6 +423,7 @@ function App() {
     //   behavior: "smooth"
     // });
   }
+
 
 
 
@@ -696,6 +713,13 @@ function App() {
           <div className="Footer-department">powered by <a href="https://departmentview.ru" target='_blank'>department</a></div>
         </div>
       </div>
+
+      <div className="push">
+        <div className="push-text">Ваше письмо доставлено</div>
+        <div className="push-button" onClick={closePush}>Закрыть</div>
+      </div>
+
+
 
     </div>
   );

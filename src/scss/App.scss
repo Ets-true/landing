@@ -7,6 +7,10 @@ $grey-blue: #777282;
 $blue: #002266;
 $grey: #9C9C9C;
 
+body {
+  background-color: #191931 !important;
+}
+
 .App {
   background-color: $white;
   font-family: 'Gothic';
@@ -869,6 +873,42 @@ $grey: #9C9C9C;
     }
   }
 }
+}
+
+.push{
+  transition: all 0.3s;
+  @include size(517,24);
+  position: sticky;
+  bottom: 15vh;
+  left: 50%;
+  transform: translate3d(-50%, adpt(50), 0);
+  opacity: 0;
+  display: flex;
+  z-index: 10000;
+  background-color: #002266;
+  @include borderRadius(15);
+  @include property(line-height,21);
+  @include paddingTop(12);
+  @include paddingBottom(13);
+  .push-text{
+    color: white;
+    @include size(281,27);
+    border-right: 1px solid white;
+    @include marginLeft(76);
+    @include fontSize(17);
+    @include paddingTop(2);
+  }
+  .push-button{
+    cursor: pointer;
+    @include size(101,25);
+    background-color: white;
+    @include marginLeft(28);
+    text-align: center;
+    @include borderRadius(15);
+    @include paddingTop(5);
+    @include fontSize(16);
+
+  }
 }
 }
 
