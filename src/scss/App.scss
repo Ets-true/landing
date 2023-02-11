@@ -50,7 +50,7 @@ body {
       @include top(40);
       .logo{
         @include marginLeft(55);
-        @include size(219*0.65,74);
+        @include size(219,74);
           img{
             width: 100%;
             height: auto;

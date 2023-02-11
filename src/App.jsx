@@ -434,7 +434,7 @@ function App() {
       <div className="App-body">
         <div className="block-Regeneration">
           <div className="sticky-wrap">
-            <div className="logo"><img src={require('./media/img/micron.png')} alt="" /></div>
+            <div className="logo"><img src={require('./media/img/RM-logo.png')} alt="" /></div>
             <div className="title-block">
             <div className="title">{Content.Regeneration.title}</div>
             <div className="subtitle">{Content.Regeneration.subtitle}</div>

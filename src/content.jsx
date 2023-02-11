@@ -139,8 +139,8 @@ export const Content = {
     form: {
       formText: 'Форма обратной связи',
       formButton: 'Открыть',
-      RM: 'ООО «МикронИнтер»',
-      copyright: '©2022'
+      RM: 'ООО «Регенерация масел»',
+      copyright: '©2023'
     },
     info: {
       phone: {
