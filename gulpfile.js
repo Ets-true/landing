@@ -1,3 +1,7 @@
+/*
+ *   Copyright (c) 2023 
+ *   All rights reserved.
+ */
 import gulp from "gulp";
 import vinylFTP from 'vinyl-ftp';
 import util from 'gulp-util';
@@ -14,8 +18,8 @@ function send() {
   configFTP.log = util.log;
   const ftpConnect = vinylFTP.create(configFTP);
   gulp.src(`build/**/*.*`, {})
-    // .pipe(ftpConnect.dest(`micron/public_html/`));
-    .pipe(ftpConnect.dest(`RM-landing/public_html/`));
+    .pipe(ftpConnect.dest(`micron/public_html/`));
+    // .pipe(ftpConnect.dest(`RM-landing/public_html/`));
 
 }
 
