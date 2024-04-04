@@ -139,31 +139,28 @@ export const Content = {
     form: {
       formText: 'Форма обратной связи',
       formButton: 'Открыть',
-      RM: 'ООО «Регенерация масел»',
-      copyright: '©2023'
+      RM: 'ООО «ПРОМТЕХ»',
+      copyright: '©2024'
     },
     info: {
       phone: {
         title: 'Телефон',
-        value: '+7 (499) 324-89-47'
+        value: '+7 (999) 999-99-99'
       },
       address: {
         title: 'Адрес',
-        value: `115409, РФ, г. Москва,
-                Каширское шоссе,
-                д.49 строение 10, метро
-                Каширское`
+        value: `просп. Ленина, 2А, Нижний Новгород`
       },
       mail: {
         title: 'Почта',
-        value: 'info@regeneration-oil.ru'
+        value: 'info@promtech.site'
       },
       card: {
-        title: 'Карточка компании'
+        title: 'Карточка контрагента'
       },
       site: {
         title: 'Официальный сайт',
-        value: 'www.regeneration-oil.ru'
+        value: 'https://promtech.site'
       }
     }
   }

@@ -694,7 +694,7 @@ function App() {
                   <div className="text">{Content.Footer.info.mail.value}</div>
                 </div>
                 <div className="info-block">
-                  <a href="https://regeneration-oil.ru/files/cardRM.pdf" target="_blank">
+                  <a href="https://promtech.site/files/card.pdf" target="_blank">
                     <div className="company-card">
                       <div className="card-title">{Content.Footer.info.card.title}</div>
                       <div className="card-icon"><File /></div>
@@ -705,12 +705,12 @@ function App() {
               <div className="info-column">
                 <div className="info-block">
                   <div className="title">{Content.Footer.info.site.title}</div>
-                  <div className="text"><a href="https://regeneration-oil.ru" target='_blank'>{Content.Footer.info.site.value}</a></div>
+                  <div className="text"><a href="https://promtech.site" target='_blank'>{Content.Footer.info.site.value}</a></div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="Footer-department">powered by <a href="https://departmentview.ru" target='_blank'>department</a></div>
+          {/* <div className="Footer-department">powered by <a href="https://departmentview.ru" target='_blank'>department</a></div> */}
         </div>
       </div>
 
